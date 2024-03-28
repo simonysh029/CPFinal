@@ -23,15 +23,17 @@ public class MemberController {
 	@GetMapping("/page/login")
 	public void loginForm() {
 	}
+	
 	@GetMapping("/page/join")
 	public void joinForm() {	
 	}
+	
 	@PostMapping("/page/join")
 	public String joinSubmit(MemberVO m) {
 		m.setM_pw(passwordEncoder.encode(m.getM_pw()));
 		m.setM_mile(0);
 		dao.insert(m);
-		String view = "/page/main";
+		String view = "/page/login";
 		return view;
 	}
 	

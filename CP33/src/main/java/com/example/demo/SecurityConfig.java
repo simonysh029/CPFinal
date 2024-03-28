@@ -22,7 +22,7 @@ public class SecurityConfig {
 		http.formLogin()
 		.loginPage("/page/login")
 		.permitAll()
-		.defaultSuccessUrl("/page/main");
+		.defaultSuccessUrl("/login");
 	//logout 권한
 		http.logout()
 		.logoutRequestMatcher(new AntPathRequestMatcher("/page/logout"))
