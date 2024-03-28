@@ -18,15 +18,21 @@
 <div class="sticky-top">
   <div class="container">
     <div class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <!-- 
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         <span class="fs-4">CP(Logo)</span>
       </a>
+     -->
+     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+     	<img src="images/logo.png" width="200" height="100" class="fs-4">
+     </a>
+     
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">츄플(ChoosePlace)</a></li>
-        <li class="nav-item"><a href="/page/login" class="nav-link">로그인/회원가입</a></li>
-        <li class="nav-item"><a href="/page/logout" class="nav-link">로그아웃</a></li>
-        <li class="nav-item"><a href="/page/myPage" class="nav-link">마이페이지</a></li>
+        <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">츄플(ChoosePlace)</a></li>   
+        <li class="nav-item"><a href="/page/login" class="nav-link">로그인/회원가입</a></li>    
+        <li class="nav-item" th:if="${session.id} != null"><a href="/page/logout" class="nav-link">로그아웃</a></li>
+        <li class="nav-item" th:if="${session.id} != null"><a th:href="@{'/page/myPage/'+${session.id}}" class="nav-link">마이페이지</a></li>
         <li class="nav-item"><a href="/page/listEvent" class="nav-link">이벤트</a></li>
       </ul>
     </div>
