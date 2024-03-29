@@ -106,137 +106,139 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
       
         <div class="col">
-          <div class="card shadow-sm">
           	<a href="/page/accomm?a_div=호텔&g_person=0">
-            	<img th:src="@{/images/hotel.png}" style="width: 100%; height: 100%"/>
+            	<img th:src="@{/images/hotel.png}" style="width: 100%; height: 100%;"/>
             </a>
+          <div class="card shadow-sm">
             <div class="card-body">
-            <p class="card-text">호텔/리조트</p>
-              	<div class="d-flex justify-content-between align-items-center">
-              	</div>
+			<p class="card-text">호텔/리조트</p>
             </div>
           </div>
         </div>
         
         <div class="col">
-          <div class="card shadow-sm">
             <a href="/page/accomm?a_div=펜션&g_person=0">
-            	<img th:src="@{/images/pension.png}" style="width: 100%; height: 100%"/>
+            	<img th:src="@{/images/pension.png}" style="width: 100%; height: 100%;"/>
             </a>
+          <div class="card shadow-sm">
             <div class="card-body">
-            <p class="card-text">펜션</p>
-              	<div class="d-flex justify-content-between align-items-center">
-              	</div>
+				<p class="card-text">펜션</p>
+ 
             </div>
           </div>
         </div>
         
         <div class="col">
-          <div class="card shadow-sm">
             <a href="/page/accomm?a_div=모텔&g_person=0">
-            	<img th:src="@{/images/motel.png}" style="width: 100%; height: 100%"/>
+            	<img th:src="@{/images/motel.png}" style="width: 100%; height: 100%;"/>
             </a>
+          <div class="card shadow-sm">
             <div class="card-body">
-            <p class="card-text">모텔</p>
-              	<div class="d-flex justify-content-between align-items-center">
-              	</div>
+				<p class="card-text">모텔</p>
+ 
             </div>
           </div>
         </div>
         
         <div class="col">
-          <div class="card shadow-sm">
             <a href="/page/accomm?a_div=가족형&g_person=0">
-            	<img th:src="@{/images/fam.png}" style="width: 100%; height: 100%"/>
+            	<img th:src="@{/images/fam.png}" style="width: 100%; height: 100%;"/>
             </a>
+          <div class="card shadow-sm">
             <div class="card-body">
-            <p class="card-text">가족형 숙소</p>
-              	<div class="d-flex justify-content-between align-items-center">
-              	</div>
+				<p class="card-text">가족형 숙소</p>
+ 
             </div>
           </div>
         </div>
         
         <div class="col">
-          <div class="card shadow-sm">
             <a href="/page/accomm?a_div=비지니스&g_person=0">
-            	<img th:src="@{/images/busi.png}" style="width: 100%; height: 100%"/>
+            	<img th:src="@{/images/busi.png}" style="width: 100%; height: 100%;"/>
             </a>
+          <div class="card shadow-sm">
             <div class="card-body">
-            <p class="card-text">비지니스 호텔</p>
-              	<div class="d-flex justify-content-between align-items-center">
-              	</div>
+				<p class="card-text">비지니스 호텔</p>
+ 
             </div>
           </div>
         </div>    
        </div>
       </div>
      </div>
+     
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
+		  
         <div class="col">
-            <img th:src="@{'/images/'+${popH1.a_img}}" style="width: 100%; height: 100%"/>
+            <img th:src="@{'/images/'+${popH1.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popH1.a_name}"></p>
           </div>
         </div>
+        
         <div class="col">
-          	<img th:src="@{'/images/'+${popP1.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popP1.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popP1.a_name}"></p>
           </div>
         </div>
+        
         <div class="col">
-          	<img th:src="@{'/images/'+${popM1.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popM1.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popM1.a_name}"></p>          
           </div>
         </div>
+        
         <div class="col">
-          	<img th:src="@{'/images/'+${popF1.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popF1.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popF1.a_name}"></p>          
           </div>
         </div>
+        
         <div class="col">
-          	<img th:src="@{'/images/'+${popB1.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popB1.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popB1.a_name}"></p>          
           </div>
         </div>
+        
        </div>
       </div>
      </div>
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
+        
         <div class="col">
-          	<img th:src="@{'/images/'+${popH2.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popH2.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popH2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
-          	<img th:src="@{'/images/'+${popP2.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popP2.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popP2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
-          	<img th:src="@{'/images/'+${popM2.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popM2.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popM2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
-          	<img th:src="@{'/images/'+${popF2.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popF2.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popF2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
-          	<img th:src="@{'/images/'+${popB2.a_img}}" style="width: 100%; height: 100%"/>
+          	<img th:src="@{'/images/'+${popB2.a_img}}" style="width: 100%; height: 100%;"/>
           <div class="card shadow-sm">
           	<p class="card-text" th:text="${popB2.a_name}"></p>          
           </div>
@@ -244,6 +246,7 @@
        </div>
       </div>
      </div>
+     
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
