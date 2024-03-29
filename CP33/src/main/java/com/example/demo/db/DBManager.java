@@ -10,8 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.example.demo.vo.AccListVO;
+import com.example.demo.vo.ListAccommVO;
 import com.example.demo.vo.AccommVO;
+import com.example.demo.vo.DetailAccommVO;
 import com.example.demo.vo.EventVO;
 import com.example.demo.vo.MemberVO;
 
@@ -29,6 +30,7 @@ public class DBManager {
 	
 //	----- accomm -----
 	
+	// 추천 숙소
 	public static List<AccommVO> popH() {
 		List<AccommVO> list = null;
 		SqlSession session = factory.openSession();
@@ -69,8 +71,9 @@ public class DBManager {
 		return list;
 	}
 	
-	public static List<AccListVO> listAcc(String a_div, int g_person, String keyword) {
-		List<AccListVO> list = null;
+	// 숙소 검색, 조회 목록
+	public static List<ListAccommVO> listAcc(String a_div, int g_person, String keyword) {
+		List<ListAccommVO> list = null;
 		SqlSession session = factory.openSession();
 		
 		Map<String, Object> map = new HashMap<>();
@@ -81,6 +84,22 @@ public class DBManager {
 		list = session.selectList("accomm.list", map);
 		session.close();
 		return list;
+	}
+	
+	// 숙소 상세 1
+	public static DetailAccommVO detailAcc1(String a_id) {
+		DetailAccommVO acc = null;
+		SqlSession session = factory.openSession();
+		acc = session.selectOne("accomm.detail1",a_id);
+		return acc;
+	}
+
+	// 숙소 상세 2
+	public static DetailAccommVO detailAcc2(String a_id) {
+		DetailAccommVO acc = null;
+		SqlSession session = factory.openSession();
+		acc = session.selectOne("accomm.detail2",a_id);
+		return acc;
 	}
 	
 //	----- member -----
@@ -120,8 +139,15 @@ public class DBManager {
 		e = session.selectOne("event.findByNo",e_no);
 		return e;
 	}
-	
-	
-	
+
+	// 메인페이지에 출력하는 리스트
+	public static List<EventVO> mainEvent() {
+		List<EventVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("event.mainEvent");
+		return list;
+	}
+
+
 
 }

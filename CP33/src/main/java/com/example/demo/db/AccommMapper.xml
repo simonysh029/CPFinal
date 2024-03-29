@@ -3,7 +3,7 @@
 <mapper namespace="accomm">
 
  	<!-- 숙소 검색, 조회 -->
-	<select id="list" resultType="accListVO">
+	<select id="list" resultType="listaccVO">
 	    SELECT a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
 	    FROM (
 	        SELECT @rownum := @rownum + 1 AS n, a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
@@ -95,6 +95,24 @@
 		        ORDER BY a_grade DESC
 		    ) a, (SELECT @rownum := 0) r
 		) b
+	</select>
+	
+	<select id="detail1" resultType="detailaccVO">
+		SELECT a.a_name, a.a_addr, a.a_grade, a.a_lat, a.a_lng, a.a_exp, a.a_img,
+	    		g.g_id, g.g_price, g.g_person, g.g_exp, g.g_img
+	    FROM accomm a, guestroom g
+	    WHERE a.a_id = g.a_id
+	    AND a.a_id = #{a_id}
+	    AND g.g_id LIKE '%001'	
+	</select>
+	
+	<select id="detail2" resultType="detailaccVO">
+		SELECT a.a_name, a.a_addr, a.a_grade, a.a_lat, a.a_lng, a.a_exp, a.a_img,
+	    		g.g_id, g.g_price, g.g_person, g.g_exp, g.g_img
+	    FROM accomm a, guestroom g
+	    WHERE a.a_id = g.a_id
+	    AND a.a_id = #{a_id}
+	    AND g.g_id LIKE '%002'	
 	</select>
 	
 </mapper>

@@ -17,16 +17,19 @@ public class AccommController {
 	@Autowired
 	private AccommDAO adao;
 	
+	// 숙소 조회 목록
 	@GetMapping("/page/accomm")
 	public String accomm(Model model, String a_div, int g_person, String keyword) {
-		System.out.println(a_div);
-		
 		model.addAttribute("list", adao.listAcc(a_div,g_person,keyword));
 		return "/page/accomm";
 	}
 
-	
-	@GetMapping("/page/detailAccomm")
-	public void detailAccomm() {
+	// 숙소 상세
+	@GetMapping("/page/detailAccomm/{a_id}")
+	public String detailAccomm(Model model, @PathVariable("a_id") String a_id) {
+		model.addAttribute("detail1", adao.detailAcc1(a_id));
+		model.addAttribute("detail2", adao.detailAcc2(a_id));
+		model.addAttribute("a_id", a_id);
+		return "/page/detailAccomm";
 	}
 }

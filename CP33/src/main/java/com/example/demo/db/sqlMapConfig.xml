@@ -7,7 +7,8 @@
   <typeAliases>
   	<typeAlias type="com.example.demo.vo.MemberVO" alias="memberVO"/>
   	<typeAlias type="com.example.demo.vo.EventVO" alias="eventVO"/>
-  	<typeAlias type="com.example.demo.vo.AccListVO" alias="acclistVO"/>
+  	<typeAlias type="com.example.demo.vo.ListAccommVO" alias="listaccVO"/>
+  	<typeAlias type="com.example.demo.vo.DetailAccommVO" alias="detailaccVO"/>
   	<typeAlias type="com.example.demo.vo.AccommVO" alias="accommVO"/>
   </typeAliases>
   <environments default="development">

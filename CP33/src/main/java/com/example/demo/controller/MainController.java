@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.dao.AccommDAO;
+import com.example.demo.dao.EventDAO;
 import com.example.demo.vo.AccommVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -22,6 +23,9 @@ public class MainController {
 
 	@Autowired
 	private AccommDAO adao;
+	
+	@Autowired
+	private EventDAO edao;
 	
 	@GetMapping("/")
 	public String main(Model model) {
@@ -40,6 +44,7 @@ public class MainController {
 		model.addAttribute("popF2", popF.get(1));
 		model.addAttribute("popB1", popB.get(0));
 		model.addAttribute("popB2", popB.get(1));
+		model.addAttribute("list", edao.mainEvent());
 		return "/page/main";
 	}
 	
@@ -49,7 +54,7 @@ public class MainController {
 		User user = (User)authentication.getPrincipal();
 		String id = user.getUsername();
 		session.setAttribute("id", id);
-		return "/page/main";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/page/myPage")

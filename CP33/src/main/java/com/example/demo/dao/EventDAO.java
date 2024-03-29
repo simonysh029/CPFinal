@@ -18,4 +18,8 @@ public class EventDAO {
 		return DBManager.findByNo(e_no);
 	}
 
+	public List<EventVO> mainEvent() {
+		return DBManager.mainEvent();
+	}
+
 }
