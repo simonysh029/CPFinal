@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.example.demo.vo.AccListVO;
+import com.example.demo.vo.EventVO;
 import com.example.demo.vo.MemberVO;
 
 public class DBManager {
@@ -52,5 +53,24 @@ public class DBManager {
 		return m;
 	}
 
+// ----- event -----
 	
+	//listEvent
+	public static List<EventVO> listEvent() {
+		List<EventVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("event.listEvent");
+		return list;
+	}
+
+	public static EventVO findByNo(int e_no) {
+		EventVO e = null;
+		SqlSession session = factory.openSession();
+		e = session.selectOne("event.findByNo",e_no);
+		return e;
+	}
+	
+	
+	
+
 }

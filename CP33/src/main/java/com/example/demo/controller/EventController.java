@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,20 +16,21 @@ import lombok.Setter;
 public class EventController {
 
 	@Autowired
-	public EventDAO dao;
-	@Autowired
-	public EventVO vo;
+	private EventDAO edao;
 	
 	//넘어가면서 list값 넣어 변환
 	@GetMapping("/page/listEvent")
-	public List<EventVO> listEvent() { 
-		return dao.findAll();
+	public void listEvent(Model model) {
+		model.addAttribute("list", edao.listEvent());
 	}
 
 	//uri방식으로 받음
 	@GetMapping("/page/detailEvent/{e_no}")
-	public String detailEvent(@PathVariable("e_no") int e_no) {
-		return "/page/detailEvent";
+	public String detailEvent(@PathVariable("e_no") int e_no, EventVO e, Model model) {
+		EventVO eList = edao.findByNo(e_no);
+		model.addAttribute("a", eList);
+		String view = "/page/detailEvent";
+		return view;
 	}
 	
 }

@@ -95,19 +95,16 @@
 <body>
 <div layout:fragment="content">
   
-<div th:each="e:${list}">
-<div class="b-example-divider"></div>
-
-<div class="container my-5">
-  <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
-    <svg class="bi mt-5 mb-3" width="48" height="48"><use xlink:href="#check2-circle"/></svg>
-    <p class="col-lg-10 mx-auto mb-4">
-      <img src="/images/${e.e_each}" alt="이벤트 1 작은 사진">
-    </p>
-    <a th:href="@{'/page/detailEvent/'+${e.e_no}}"><button class="btn btn-primary px-5 mb-5" type="button">상세보기</button></a>
-  </div>
-</div>
-</div>
+	
+	<div class="container my-5" th:each="e:${list}">
+	  <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
+	    <svg class="bi mt-5 mb-3" width="48" height="48"><use xlink:href="#check2-circle"/></svg>
+	    <p class="col-lg-10 mx-auto mb-4">
+	      <img th:src="@{'/images/'+${e.e_each}}" style="width:100%">
+	    </p>
+	    <a th:href="@{'/page/detailEvent/'+${e.e_no}}"><button class="btn btn-primary px-5 mb-5" type="button">상세보기</button></a>
+	  </div>
+	</div>
 
 </div>
 </body>

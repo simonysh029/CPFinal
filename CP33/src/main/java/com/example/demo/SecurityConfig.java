@@ -14,7 +14,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	//전체 권한
 		http.authorizeHttpRequests()
-		.requestMatchers("/","/**","/page/**").permitAll()
+		.requestMatchers("/","/**","/page/**","/css/**","/js/**","/images/**").permitAll()
 		.requestMatchers("/admin/**").hasRole("admin")
 		.requestMatchers("/user/**").hasRole("user")
 		.anyRequest().authenticated();

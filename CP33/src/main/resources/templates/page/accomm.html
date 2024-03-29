@@ -71,14 +71,12 @@
 <!-- 업체1 -->
 
 <div layout:fragment="content">
-  <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">업체 1 이름</h2>
 
+  <div class="container px-4 py-5" th:each="a:${list}">
+    <h2 class="pb-2 border-bottom" th:text="${a.a_name}"></h2>
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">업체 1 큰 이미지</h3>
-        <p class="text-muted">업체 1 큰 이미지</p>
-        <a href="/page/detailAccomm" class="btn btn-primary btn-lg">상세보기</a>
+        <img th:src="@{'/images/'+${a.a_img}}" style="width: 80%" />
       </div>
       <div class="row row-cols-1 row-cols-sm-2 g-4">
         <div class="d-flex flex-column gap-2">
@@ -88,8 +86,8 @@
               <use xlink:href="#collection" />
             </svg>
           </div>
-          <h4 class="fw-semibold mb-0">업체명</h4>
-          <p class="text-muted">업체 1 간단한 소개</p>
+          <h4 class="fw-semibold mb-0">소개</h4>
+          <p class="text-muted" th:text="${a.a_exp}"></p>
         </div>
         <div class="d-flex flex-column gap-2">
           <div
@@ -99,7 +97,7 @@
             </svg>
           </div>
           <h4 class="fw-semibold mb-0">지역</h4>
-          <p class="text-muted">업체 1 주소</p>
+          <p class="text-muted" th:text="${a.a_addr}"></p>
         </div>
 
         <div class="d-flex flex-column gap-2">
@@ -110,7 +108,7 @@
             </svg>
           </div>
           <h4 class="fw-semibold mb-0">평점</h4>
-          <p class="text-muted">업체 1 평점(숙소들 중 평점 높은거)</p>
+          <p class="text-muted" th:text="${a.a_grade}"></p>
         </div>
         <div class="d-flex flex-column gap-2">
           <div
@@ -119,232 +117,15 @@
               <use xlink:href="#table" />
             </svg>
           </div>
-          <h4 class="fw-semibold mb-0">금액</h4>
-          <p class="text-muted">업체 1 금액(숙소들 중 평점 높은거)</p>
+          <h4 class="fw-semibold mb-0">요금</h4>
+          <p class="text-muted" th:text="${a.g_price}"></p>
         </div>
-      </div>
-    </div>
-  </div>
-<!-- 업체2 -->
-  <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">업체 2 이름</h2>
-
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
-      <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">업체 2 큰 이미지</h3>
-        <p class="text-muted">업체 2 큰 이미지</p>
         <a href="/page/detailAccomm" class="btn btn-primary btn-lg">상세보기</a>
       </div>
-      <div class="row row-cols-1 row-cols-sm-2 g-4">
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#collection" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">업체명</h4>
-          <p class="text-muted">업체 2 간단한 소개</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#gear-fill" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">지역</h4>
-          <p class="text-muted">업체 2 주소</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#speedometer" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">평점</h4>
-          <p class="text-muted">업체 2 평점(숙소들 중 평점 높은거)</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#table" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">금액</h4>
-          <p class="text-muted">업체 2 금액(숙소들 중 평점 높은거)</p>
-        </div>
-      </div>
     </div>
   </div>
-<!-- 업체3 -->
-  <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">업체 3 이름</h2>
-
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
-      <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">업체 3 큰 이미지</h3>
-        <p class="text-muted">업체 3 큰 이미지</p>
-        <a href="/page/detailAccomm" class="btn btn-primary btn-lg">상세보기</a>
-      </div>
-      <div class="row row-cols-1 row-cols-sm-2 g-4">
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#collection" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">업체명</h4>
-          <p class="text-muted">업체 3 간단한 소개</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#gear-fill" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">지역</h4>
-          <p class="text-muted">업체 3 주소</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#speedometer" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">평점</h4>
-          <p class="text-muted">업체 3 평점(숙소들 중 평점 높은거)</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#table" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">금액</h4>
-          <p class="text-muted">업체 3 금액(숙소들 중 평점 높은거)</p>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- 업체4 -->
-  <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">업체 4 이름</h2>
-
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
-      <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">업체 4 큰 이미지</h3>
-        <p class="text-muted">업체 4 큰 이미지</p>
-        <a href="/page/detailAccomm" class="btn btn-primary btn-lg">상세보기</a>
-      </div>
-      <div class="row row-cols-1 row-cols-sm-2 g-4">
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#collection" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">업체명</h4>
-          <p class="text-muted">업체 4 간단한 소개</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#gear-fill" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">지역</h4>
-          <p class="text-muted">업체 4 주소</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#speedometer" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">평점</h4>
-          <p class="text-muted">업체 4 평점(숙소들 중 평점 높은거)</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#table" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">금액</h4>
-          <p class="text-muted">업체 4 금액(숙소들 중 평점 높은거)</p>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- 업체5 -->
-  <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">업체 5 이름</h2>
-
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
-      <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">업체 5 큰 이미지</h3>
-        <p class="text-muted">업체 5 큰 이미지</p>
-        <a href="/page/detailAccomm" class="btn btn-primary btn-lg">상세보기</a>
-      </div>
-      <div class="row row-cols-1 row-cols-sm-2 g-4">
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#collection" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">업체명</h4>
-          <p class="text-muted">업체 5 간단한 소개</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#gear-fill" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">지역</h4>
-          <p class="text-muted">업체 5 주소</p>
-        </div>
-
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#speedometer" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">평점</h4>
-          <p class="text-muted">업체 5 평점(숙소들 중 평점 높은거)</p>
-        </div>
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#table" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">금액</h4>
-          <p class="text-muted">업체 5 금액(숙소들 중 평점 높은거)</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  
+  
 </div>
 </body>
 </html>

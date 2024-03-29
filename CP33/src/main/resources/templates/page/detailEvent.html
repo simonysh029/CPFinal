@@ -86,8 +86,6 @@
         display: block !important;
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="product.css" rel="stylesheet">
 </th:block>    
 </head>
 <body>
@@ -95,7 +93,7 @@
 
 	<div class="container my-5">
 	  <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
-	      <img src="/images/all01.png" alt="이벤트 1 큰 사진">
+	      <img th:src="@{'/images/'+${a.e_all}}" style="width:100%">
 	  </div>
 	</div>
 

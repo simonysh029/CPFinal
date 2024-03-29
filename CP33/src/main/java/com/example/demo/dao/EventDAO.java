@@ -9,8 +9,13 @@ import com.example.demo.vo.EventVO;
 
 @Repository
 public class EventDAO {
-	public List<EventVO> findAll() {
-		return null;
+
+	public List<EventVO> listEvent() {
+		return DBManager.listEvent();
+	}
+
+	public EventVO findByNo(int e_no) {
+		return DBManager.findByNo(e_no);
 	}
 
 }

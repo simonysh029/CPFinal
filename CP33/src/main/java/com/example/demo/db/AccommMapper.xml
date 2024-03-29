@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="accomm">
+	<select id="list" resultType="accListVO">
+		SELECT a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
+		FROM (
+		    SELECT @rownum := @rownum + 1 AS n, a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
+		    FROM (
+		        SELECT a.a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price 
+		        FROM accomm a, guestroom g
+		        WHERE a.a_id = g.a_id 
+		        AND g.g_id LIKE '%001'
+		        AND a.a_div = #{a_div}
+		        ORDER BY a_grade DESC
+		    ) a, (SELECT @rownum := 0) r
+		) b
+	
+	</select>
+	
+</mapper>
