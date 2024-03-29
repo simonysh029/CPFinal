@@ -76,27 +76,27 @@
 <div layout:fragment="content">
 <!-- form태그를 통한 search -->
 <div class="container">
-<form>
+<form action="/page/accomm" method="get">
 	<div class="input-group">
-		<select class="form-select" aria-label="Default select example">
-		  <option selected>숙박 형태 선택</option>
+		<select class="form-select" name="a_div" aria-label="Default select example">
+		  <option value="all" selected>숙박 형태 선택</option>
 		  <option value="모텔">모텔</option>
 		  <option value="호텔">호텔</option>
 		  <option value="가족형">가족형 숙소</option>
 		  <option value="펜션">펜션</option>
 		  <option value="비지니스">비지니스 호텔</option>
 		</select>
-		<select class="form-select" aria-label="Default select example">
-		  <option selected>숙박 인원 선택</option>
+		<select class="form-select" name="g_person" aria-label="Default select example">
+		  <option value="0" selected>숙박 인원 선택</option>
 		  <option value="1">1인</option>
 		  <option value="2">2인</option>
 		  <option value="3">3인</option>
 		  <option value="4">4인</option>
 		  <option value="5">5인 이상</option>
 		</select>
-		<input type="date" class="calendar" name="r_start">
-	    <input type="date" class="calendar" name="r_end">
-	 	<input type="search" class="form-control" placeholder="숙박 희망 지역을 입력해 주세요." aria-label="Recipient's username with two button addons">
+		<input type="date" class="calendar" >
+	    <input type="date" class="calendar" >
+	 	<input type="search" class="form-control" name="keyword" placeholder="숙박 희망 지역을 입력해 주세요." aria-label="Recipient's username with two button addons">
 	 	<button class="btn btn-outline-secondary" type="search">검색</button>
 	</div>
 </form>
@@ -107,7 +107,7 @@
       
         <div class="col">
           <div class="card shadow-sm">
-            <a href="/page/accomm/호텔">
+          	<a href="/page/accomm?a_div=호텔&g_person=0">
             	<img th:src="@{/images/hotel.png}" style="width: 100%; height: 100%"/>
             </a>
             <div class="card-body">
@@ -120,7 +120,7 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <a href="/page/accomm/펜션">
+            <a href="/page/accomm?a_div=펜션&g_person=0">
             	<img th:src="@{/images/pension.png}" style="width: 100%; height: 100%"/>
             </a>
             <div class="card-body">
@@ -133,7 +133,7 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <a href="/page/accomm/모텔">
+            <a href="/page/accomm?a_div=모텔&g_person=0">
             	<img th:src="@{/images/motel.png}" style="width: 100%; height: 100%"/>
             </a>
             <div class="card-body">
@@ -146,11 +146,11 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <a href="/page/accomm/가족형">
+            <a href="/page/accomm?a_div=가족형&g_person=0">
             	<img th:src="@{/images/fam.png}" style="width: 100%; height: 100%"/>
             </a>
             <div class="card-body">
-            <p class="card-text">가족형</p>
+            <p class="card-text">가족형 숙소</p>
               	<div class="d-flex justify-content-between align-items-center">
               	</div>
             </div>
@@ -159,17 +159,16 @@
         
         <div class="col">
           <div class="card shadow-sm">
-            <a href="/page/accomm/비지니스">
+            <a href="/page/accomm?a_div=비지니스&g_person=0">
             	<img th:src="@{/images/busi.png}" style="width: 100%; height: 100%"/>
             </a>
             <div class="card-body">
-            <p class="card-text">비지니스</p>
+            <p class="card-text">비지니스 호텔</p>
               	<div class="d-flex justify-content-between align-items-center">
               	</div>
             </div>
           </div>
-        </div>
-        
+        </div>    
        </div>
       </div>
      </div>
@@ -177,28 +176,33 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
         <div class="col">
+            <img th:src="@{'/images/'+${popH1.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">호텔 추천 숙소1</text></svg>
+          	<p class="card-text" th:text="${popH1.a_name}"></p>
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popP1.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">펜션 추천 숙소1</text></svg>
+          	<p class="card-text" th:text="${popP1.a_name}"></p>
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popM1.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">모텔 추천 숙소1</text></svg>
+          	<p class="card-text" th:text="${popM1.a_name}"></p>          
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popF1.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">가족형 추천 숙소1</text></svg>
+          	<p class="card-text" th:text="${popF1.a_name}"></p>          
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popB1.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">비지니스 추천 숙소1</text></svg>
+          	<p class="card-text" th:text="${popB1.a_name}"></p>          
           </div>
         </div>
        </div>
@@ -208,28 +212,33 @@
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
         <div class="col">
+          	<img th:src="@{'/images/'+${popH2.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">호텔 추천 숙소2</text></svg>
+          	<p class="card-text" th:text="${popH2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popP2.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">펜션 추천 숙소2</text></svg>
+          	<p class="card-text" th:text="${popP2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popM2.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">모텔 추천 숙소2</text></svg>
+          	<p class="card-text" th:text="${popM2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popF2.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">가족형 추천 숙소2</text></svg>
+          	<p class="card-text" th:text="${popF2.a_name}"></p>          
           </div>
         </div>
         <div class="col">
+          	<img th:src="@{'/images/'+${popB2.a_img}}" style="width: 100%; height: 100%"/>
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">비지니스 추천 숙소2</text></svg>
+          	<p class="card-text" th:text="${popB2.a_name}"></p>          
           </div>
         </div>
        </div>

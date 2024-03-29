@@ -17,9 +17,11 @@ public class AccommController {
 	@Autowired
 	private AccommDAO adao;
 	
-	@GetMapping("/page/accomm/{a_div}")
-	public String accomm(Model model, @PathVariable("a_div") String a_div) {
-		model.addAttribute("list", adao.listAcc(a_div));
+	@GetMapping("/page/accomm")
+	public String accomm(Model model, String a_div, int g_person, String keyword) {
+		System.out.println(a_div);
+		
+		model.addAttribute("list", adao.listAcc(a_div,g_person,keyword));
 		return "/page/accomm";
 	}
 

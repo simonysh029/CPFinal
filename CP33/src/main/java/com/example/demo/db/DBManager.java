@@ -1,7 +1,9 @@
 package com.example.demo.db;
 
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.example.demo.vo.AccListVO;
+import com.example.demo.vo.AccommVO;
 import com.example.demo.vo.EventVO;
 import com.example.demo.vo.MemberVO;
 
@@ -24,10 +27,58 @@ public class DBManager {
 		}
 	}
 	
-	public static List<AccListVO> listAcc(String a_div) {
+//	----- accomm -----
+	
+	public static List<AccommVO> popH() {
+		List<AccommVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("accomm.popH");
+		session.close();
+		return list;
+	}
+	
+	public static List<AccommVO> popP() {
+		List<AccommVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("accomm.popP");
+		session.close();
+		return list;
+	}
+
+	public static List<AccommVO> popM() {
+		List<AccommVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("accomm.popM");
+		session.close();
+		return list;
+	}
+
+	public static List<AccommVO> popF() {
+		List<AccommVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("accomm.popF");
+		session.close();
+		return list;
+	}
+
+	public static List<AccommVO> popB() {
+		List<AccommVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("accomm.popB");
+		session.close();
+		return list;
+	}
+	
+	public static List<AccListVO> listAcc(String a_div, int g_person, String keyword) {
 		List<AccListVO> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("accomm.list", a_div);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("a_div", a_div);
+		map.put("g_person", g_person);
+		map.put("keyword", keyword);
+		
+		list = session.selectList("accomm.list", map);
 		session.close();
 		return list;
 	}
