@@ -1,7 +1,12 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.example.demo.dao.AccommDAO;
 
 import lombok.Setter;
 
@@ -9,10 +14,15 @@ import lombok.Setter;
 @Setter
 public class AccommController {
 
-	@GetMapping("/page/accomm")
-	public void accomm() {
+	@Autowired
+	private AccommDAO adao;
+	
+	@GetMapping("/page/accomm/{a_div}")
+	public String accomm(Model model, @PathVariable("a_div") String a_div) {
+		model.addAttribute("list", adao.listAcc(a_div));
+		return "/page/accomm";
 	}
-	//숙소 구분별로 5개 만들어야한다. URI 방식 ?
+
 	
 	@GetMapping("/page/detailAccomm")
 	public void detailAccomm() {
