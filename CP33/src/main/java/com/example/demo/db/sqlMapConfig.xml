@@ -10,6 +10,7 @@
   	<typeAlias type="com.example.demo.vo.ListAccommVO" alias="listaccVO"/>
   	<typeAlias type="com.example.demo.vo.DetailAccommVO" alias="detailaccVO"/>
   	<typeAlias type="com.example.demo.vo.AccommVO" alias="accommVO"/>
+  	<typeAlias type="com.example.demo.vo.AccommVO" alias="reserveVO"/>
   </typeAliases>
   <environments default="development">
     <environment id="development">
@@ -26,5 +27,6 @@
     <mapper resource="com/example/demo/db/MemberMapper.xml"/>
     <mapper resource="com/example/demo/db/EventMapper.xml"/>
     <mapper resource="com/example/demo/db/AccommMapper.xml"/>
+    <mapper resource="com/example/demo/db/MyPageMapper.xml"/>
   </mappers>
 </configuration>

@@ -15,13 +15,13 @@
 <body>
 <div layout:fragment="content">
   <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">안녕하세요 ~회원님</h2>
+    <h2 class="pb-2 border-bottom">안녕하세요 ${name.m_name} 회원님</h2>
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold">~회원님의 마이페이지 입니다.</h3>
+        <h3 class="fw-bold">${name.m_name} 회원님의 마이페이지 입니다.</h3>
         <p class="text-muted"></p>
-        <a href="/updateMember" class="btn btn-primary btn-lg">회원 정보 수정</a>
+        <a href="/page/updateMember" class="btn btn-primary btn-lg">회원 정보 수정</a>
       </div>
       <div class="row row-cols-1 row-cols-sm-2 g-4">
         <div class="d-flex flex-column gap-2">
@@ -32,8 +32,8 @@
             </svg>
           </div>
           
-          <h4 class="fw-semibold mb-0">~회원님의 마일리지</h4>
-          <p class="text-muted">~회원님의 마일리지표시</p>
+          <h4 class="fw-semibold mb-0">${name.m_name} 회원님의 마일리지</h4>
+          <p class="text-muted">${name.m_name} 회원님의 마일리지 -> ${mile.m_mile}</p>
         </div>
 
         <div class="d-flex flex-column gap-2">
@@ -44,7 +44,7 @@
             </svg>
           </div>
           <h4 class="fw-semibold mb-0">예약한 숙소</h4>
-          <p class="text-muted">예약한 숙소 내역 출력</p>
+          <p class="text-muted" th:text="${rList}">예약한 숙소 내역 출력</p>
         </div>
 
         <div class="d-flex flex-column gap-2">
@@ -55,22 +55,11 @@
             </svg>
           </div>
           <h4 class="fw-semibold mb-0">이용 내역</h4>
-          <p class="text-muted">이용 내역 숙소 1</p>
-          <p class="text-muted">이용 내역 숙소 2</p>
-          <p class="text-muted">이용 내역 숙소 3</p>
+          <p class="text-muted" th:each="r:${rList}">이용 내역 숙소 1
+			  <p th:text="{r.m_id}"></p>
+			  <p th:text="{r.g_id}"></p>
+		  </p>
         </div>
-<!--
-        <div class="d-flex flex-column gap-2">
-          <div
-            class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
-            <svg class="bi" width="1em" height="1em">
-              <use xlink:href="#table" />
-            </svg>
-          </div>
-          <h4 class="fw-semibold mb-0">Featured title</h4>
-          <p class="text-muted">Paragraph of text beneath the heading to explain the heading.</p>
-        </div>
--->
       </div>
     </div>
   </div>
