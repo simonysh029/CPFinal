@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="myPage">
-    <select id="findReserve" resultType="reserveVO">
-        <!-- accomm, guestroom, reserve, member 테이블을 조인하여 데이터를 가져오는 쿼리 -->
-        <!-- m.m_id = #{m_id} 조건으로 m_id가 주어진 값과 일치하는 데이터를 가져옴 -->
-        select a.a_name, a.a_addr, r.r_date, r.r_start, r.r_end, m.m_id
-        from accomm a, guestroom g, reserve r, member m
-        where a.a_id = g.a_id
-        and r.g_id = g.g_id
-        and m.m_id = r.m_id
-        and m.m_id = #{m_id} <!-- m_id가 주어진 값과 일치하는 데이터만 가져옴 -->
-    </select>
+<mapper namespace="mypage">
+
+    <select id="findReserve" resultType="reserveVO" parameterType="string">
+    SELECT a_name, a_addr, r_date, r_start, r_end, m.m_id 
+    	FROM accomm a, guestroom g, reserve r, member m 
+    		WHERE g.a_id = a.a_id 
+    			AND r.g_id = g.g_id 
+    			AND r.m_id = m.m_id 
+    			AND m.m_id = #{m_id}  
+	</select>
+    
+	<select id="findStay" resultType="stayVO" parameterType="string">
+    SELECT a_name, a_addr, s_start, s_end, m_id 
+   		FROM ( 
+       		SELECT a_name, a_addr, s_start, s_end, m_id  
+       			FROM accomm a, guestroom g, stay s  
+			 	    WHERE a.a_id = g.a_id 
+   					AND s.g_id = g.g_id 
+  					AND m_id = #{m_id} 
+						ORDER BY s_start 
+     			) a
+
+	</select>
+	
 </mapper>

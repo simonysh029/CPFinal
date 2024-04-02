@@ -6,11 +6,10 @@ import lombok.Data;
 
 @Data
 public class ReserveVO {
-	private int r_no;
+	private String a_name;
+	private String a_addr;
 	private Date r_date;
 	private Date r_start;
 	private Date r_end;
-	private int r_person;
 	private String m_id;
-	private String g_id;
 }

@@ -16,6 +16,7 @@ import com.example.demo.vo.DetailAccommVO;
 import com.example.demo.vo.EventVO;
 import com.example.demo.vo.MemberVO;
 import com.example.demo.vo.ReserveVO;
+import com.example.demo.vo.StayVO;
 
 public class DBManager {
 	private static SqlSessionFactory factory;
@@ -150,10 +151,19 @@ public class DBManager {
 	}
 
 	// ----- myPage -----
+	
+	
 	public static List<ReserveVO> findReserve(String m_id) {
 		List<ReserveVO> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectOne("mypage.findReserve",m_id);
+		list = session.selectList("mypage.findReserve", m_id);
+		return list;
+	}
+
+	public static List<StayVO> findStay(String m_id) {
+		List<StayVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("mypage.findStay", m_id);
 		return list;
 	}
 

@@ -57,7 +57,4 @@ public class MainController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/page/myPage")
-	public void myPage() {
-	}
 }
