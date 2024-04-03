@@ -117,10 +117,10 @@ public class DBManager {
 	}
 	
 	// 회원조회 By Id
-	public static MemberVO findById(String m_id) {
+	public static MemberVO findById(String username) {
 		MemberVO m = null;
 		SqlSession session = factory.openSession();
-		m = session.selectOne("member.findById",m_id);
+		m = session.selectOne("member.findById",username);
 		session.close();
 		return m;
 	}
@@ -151,20 +151,25 @@ public class DBManager {
 	}
 
 	// ----- myPage -----
-	
-	
-	public static List<ReserveVO> findReserve(String m_id) {
+	public static List<ReserveVO> findReserve(String username) {
 		List<ReserveVO> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.findReserve", m_id);
+		list = session.selectList("mypage.findReserve", username);
 		return list;
 	}
-
-	public static List<StayVO> findStay(String m_id) {
+	public static List<StayVO> findStay(String username) {
 		List<StayVO> list = null;
 		SqlSession session = factory.openSession();
-		list = session.selectList("mypage.findStay", m_id);
+		list = session.selectList("mypage.findStay", username);
 		return list;
+	}
+	public static int updateMember(MemberVO m) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("member.updateMember",m);
+		session.commit();
+		session.close();
+		return re;
 	}
 
 }

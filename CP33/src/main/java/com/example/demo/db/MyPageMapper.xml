@@ -12,7 +12,8 @@
 	</select>
     
 	<select id="findStay" resultType="stayVO" parameterType="string">
-    SELECT a_name, a_addr, s_start, s_end, m_id 
+
+   SELECT a_name, a_addr, s_start, s_end, m_id 
    		FROM ( 
        		SELECT a_name, a_addr, s_start, s_end, m_id  
        			FROM accomm a, guestroom g, stay s  

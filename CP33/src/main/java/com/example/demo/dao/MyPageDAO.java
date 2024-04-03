@@ -11,12 +11,11 @@ import com.example.demo.vo.StayVO;
 
 @Repository
 public class MyPageDAO {	
-	public List<ReserveVO> findReserve(String m_id) {
-		return DBManager.findReserve(m_id);
+	public List<ReserveVO> findReserve(String username) {
+		return DBManager.findReserve(username);
 	}
-	public List<StayVO> findStay(String m_id) {
-		return DBManager.findStay(m_id);
+	public List<StayVO> findStay(String username) {
+		return DBManager.findStay(username);
 	}
-	
-	
+
 }
