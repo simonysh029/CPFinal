@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 public class StayVO {
-	private String a_name;
-	private String a_addr;	
+	private int s_no;
 	private Date s_start;
 	private Date s_end;
+	private int s_person;
 	private String m_id;
+	private String g_id;
 }

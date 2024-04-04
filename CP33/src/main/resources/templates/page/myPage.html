@@ -15,11 +15,12 @@
 <body>
 <div layout:fragment="content">
   <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom" th:text="|안녕하세요 ${mList.m_name} 회원님|"></h2>
+    <h2 class="pb-2 border-bottom">마이페이지</h2>
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold" th:text="|${mList.m_name} 회원님의 마이페이지|"></h3>
+        <h3 class="fw-bold">안녕하세요</h3><br />
+        <h3 class="fw-bold" th:text="|${mList.m_name} 회원님|"></h3>
         <p class="text-muted"></p>
         <a href="/page/updateMember" class="btn btn-primary btn-lg">회원 정보 수정</a>
       </div>
@@ -33,7 +34,7 @@
           </div>
           
           <h4 class="fw-semibold mb-0">마일리지</h4>
-          <p class="text-muted" th:text="|${mList.m_name} 회원님의 잔여 마일리지 : ${mList.m_mile}|"></p>
+          <p class="text-muted" th:text="|잔여 마일리지 : ${mList.m_mile}|"></p>
         </div>
 
         <div class="d-flex flex-column gap-2">
@@ -45,7 +46,7 @@
           </div>
           <h4 class="fw-semibold mb-0">이용 내역</h4>
           <p class="text-muted" th:each="s:${sList}">
-			  <span th:text="|ID 	: ${s.m_id}|"></span><br>
+			  
 			  <span th:text="|숙소 	: ${s.a_name}|"></span><br>
 			  <span th:text="|주소 	: ${s.a_addr}|"></span><br>
 			  <span th:text="|체크인 	: ${s.s_start}|"></span><br>
@@ -61,7 +62,7 @@
           </div>
           <h4 class="fw-semibold mb-0">예약한 숙소</h4>
           <p class="text-muted" th:each="r:${rList}">
-			  <span th:text="|ID	: ${r.m_id}|"></span><br>
+			  
 			  <span th:text="|숙소 	: ${r.a_name}|"></span><br>
 			  <span th:text="|주소 	: ${r.a_addr}|"></span><br>
 			  <span th:text="|예약일 	: ${r.r_date}|"></span><br>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mypage">
 
-    <select id="findReserve" resultType="reserveVO" parameterType="string">
+    <select id="findReserve" resultType="myreserveVO" parameterType="string">
     SELECT a_name, a_addr, r_date, r_start, r_end, m.m_id 
     	FROM accomm a, guestroom g, reserve r, member m 
     		WHERE g.a_id = a.a_id 
@@ -11,7 +11,7 @@
     			AND m.m_id = #{m_id}  
 	</select>
     
-	<select id="findStay" resultType="stayVO" parameterType="string">
+	<select id="findStay" resultType="mystayVO" parameterType="string">
 
    SELECT a_name, a_addr, s_start, s_end, m_id 
    		FROM ( 

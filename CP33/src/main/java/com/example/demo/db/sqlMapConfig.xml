@@ -12,6 +12,8 @@
   	<typeAlias type="com.example.demo.vo.AccommVO" alias="accommVO"/>
   	<typeAlias type="com.example.demo.vo.ReserveVO" alias="reserveVO"/>
   	<typeAlias type="com.example.demo.vo.StayVO" alias="stayVO"/>
+  	<typeAlias type="com.example.demo.vo.MyReserveVO" alias="myreserveVO"/>
+  	<typeAlias type="com.example.demo.vo.MyStayVO" alias="mystayVO"/>
   	<typeAlias type="com.example.demo.vo.GuestroomVO" alias="guestroomVO"/>
   </typeAliases>
   <environments default="development">
