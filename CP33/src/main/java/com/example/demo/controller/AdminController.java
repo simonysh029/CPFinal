@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Controller
 @Setter
-
+ 
 public class AdminController {
 
 	@GetMapping("/admin/main")
