@@ -10,9 +10,6 @@ import lombok.Setter;
   
 public class AdminController {
 
-	@GetMapping("/admin/main")
-	public void adminMain() {
-	}
 	@GetMapping("/admin/member")
 	public void adminMember() {
 	}

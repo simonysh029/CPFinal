@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.dao.AccommDAO;
 import com.example.demo.dao.EventDAO;
+import com.example.demo.dao.MemberDAO;
 import com.example.demo.vo.AccommVO;
+import com.example.demo.vo.MemberVO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
@@ -26,6 +28,9 @@ public class MainController {
 	
 	@Autowired
 	private EventDAO edao;
+	
+	@Autowired
+	private MemberDAO mdao;
 	
 	@GetMapping("/")
 	public String main(Model model) {
@@ -54,7 +59,11 @@ public class MainController {
 		User user = (User)authentication.getPrincipal();
 		String id = user.getUsername();
 		session.setAttribute("id", id);
+		
+		String role = mdao.findRole(id);
+		System.out.println(role);
+		session.setAttribute("role", role);
+		
 		return "redirect:/";
 	}
-	
 }

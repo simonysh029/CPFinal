@@ -125,6 +125,15 @@ public class DBManager {
 		return m;
 	}
 
+	//role 뽑아오기
+	public static String findRole(String id) {
+		String role = null;
+		SqlSession session = factory.openSession();
+		role = session.selectOne("member.findRole", id);
+		session.close();
+		return role;
+	}
+	
 // ----- event -----
 	
 	//listEvent

@@ -11,6 +11,11 @@ public class MemberDAO {
 	public MemberVO findById(String username) {
 		return DBManager.findById(username);
 	}
+	
+	public String findRole(String id) {
+		return DBManager.findRole(id);
+	}
+
 	public int insert(MemberVO m) {
 		return DBManager.insertMember(m);
 	}

@@ -4,6 +4,10 @@
 	<select id="findById" resultType="memberVO">
 		select * from member where m_id=#{m_id}
 	</select>
+	
+	<select id="findRole" resultType="string">
+		select m_role from member where m_id=#{id}
+	</select>
 
 	<insert id="insert" parameterType="memberVO">
 		insert into member values(#{m_id},#{m_pw},#{m_name},#{m_role},#{m_regist},#{m_phone},#{m_addr},#{m_mile})
@@ -16,5 +20,4 @@
 	<update id="updateMember" parameterType="memberVO">
 		update member set m_id=#{m_id}, m_pw=#{m_pw}, m_name=#{m_name}, m_addr=#{m_addr}, m_phone=#{m_phone} where m_id=#{m_id}
 	</update>
-	
 </mapper>
