@@ -7,9 +7,19 @@ import lombok.Setter;
 
 @Controller
 @Setter
+
 public class AdminController {
 
 	@GetMapping("/admin/main")
 	public void adminMain() {
+	}
+	@GetMapping("/admin/member")
+	public void adminMember() {
+	}
+	@GetMapping("/admin/accomm")
+	public void adminAccomm() {
+	}
+	@GetMapping("/admin/event")
+	public void adminEvent() {
 	}
 }
