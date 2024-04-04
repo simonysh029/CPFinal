@@ -43,4 +43,9 @@ public class AccommDAO {
 	public DetailAccommVO detailAcc2(String a_id) {
 		return DBManager.detailAcc2(a_id);
 	}
+
+	public List<AccommVO> findAllA() {
+		return DBManager.findAllA();
+	}
+
 }

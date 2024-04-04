@@ -181,4 +181,29 @@ public class DBManager {
 		return re;
 	}
 
+	
+	
+	//admin페이지에서 사용
+	
+	public static List<MemberVO> findAll() {
+		List<MemberVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("member.findAll");
+		return list;
+	}
+
+	public static List<AccommVO> findAllA() {
+		List<AccommVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("accomm.findAllA");
+		return list;
+	}
+
+	public static List<EventVO> findAllE() {
+		List<EventVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("event.findAllE");
+		return list;
+	}
+
 }

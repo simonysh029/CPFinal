@@ -115,4 +115,8 @@
 	    AND g.g_id LIKE '%002'	
 	</select>
 	
+	<select id="findAllA" resultType="accommVO">
+		select * from accomm
+	</select>
+	
 </mapper>

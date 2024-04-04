@@ -4,6 +4,10 @@
 	<select id="findById" resultType="memberVO">
 		select * from member where m_id=#{m_id}
 	</select>
+
+	<select id="findAll" resultType="memberVO">
+		select * from member
+	</select>
 	
 	<select id="findRole" resultType="string">
 		select m_role from member where m_id=#{id}

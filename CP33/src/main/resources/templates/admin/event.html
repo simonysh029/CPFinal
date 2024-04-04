@@ -105,46 +105,31 @@
 			
 		<form>				
 			<div class="btn-group" role="group" aria-label="Basic example">
-			  <a href="#"><button type="submit" class="btn btn-primary">추가</button></a>
-			  <a href="#"><button type="submit" class="btn btn-primary">수정</button></a>
+			  <a href="/admin/addEvent"><button type="submit" class="btn btn-primary">추가</button></a>
+			  <a href="/admin/upEvent"><button type="submit" class="btn btn-primary">수정</button></a>
+			  <a href="/admin/delEvent"><button type="submit" class="btn btn-primary">삭제</button></a>
 			</div>
-
-			<div class="form-check">
-  				<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
- 				 <label class="form-check-label" for="defaultCheck1">
-    				Default checkbox
-  				</label>
-			</div>
-			<div class="form-check">
-  				<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
- 				 <label class="form-check-label" for="defaultCheck1">
-    				Default checkbox
-  				</label>
-			</div>
-			<div class="form-check">
-  				<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
- 				 <label class="form-check-label" for="defaultCheck1">
-    				Default checkbox
-  				</label>
-			</div>
-			<div class="form-check">
-  				<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
- 				 <label class="form-check-label" for="defaultCheck1">
-    				Default checkbox
-  				</label>
-			</div>
-			<div class="form-check">
-  				<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
- 				 <label class="form-check-label" for="defaultCheck1">
-    				Default checkbox
-  				</label>
-			</div>
+			<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">이벤트 번호</th>
+				      <th scope="col">이벤트 리스트 사진</th>
+				      <th scope="col">이벤트 상세 사진</th>
+				      <th scope="col">메인페이지 사용 여부</th>
+				    </tr>
+				  </thead>
+				  <tbody class="table-group-divider">
+				    <tr th:each=e:${eList}>
+				      <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
+				      <td th:text="${e.e_no}"></td>
+				      <td th:text="${e.e_all}"></td>
+				      <td th:text="${e.e_each}"></td>
+				      <td th:text="${e.e_main}"></td>
+				    </tr>
+				  </tbody>
+			</table>
 		</form>
-			
-			
-			form 우측에 list가 생성되도록 만든다
-			
-			
 		</div>
 	
 	</div> 

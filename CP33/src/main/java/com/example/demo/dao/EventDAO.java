@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.EventVO;
+import com.example.demo.vo.MemberVO;
 
 @Repository
 public class EventDAO {
@@ -20,6 +21,10 @@ public class EventDAO {
 
 	public List<EventVO> mainEvent() {
 		return DBManager.mainEvent();
+	}
+
+	public List<EventVO> findAllE() {
+		return DBManager.findAllE();
 	}
 
 }
