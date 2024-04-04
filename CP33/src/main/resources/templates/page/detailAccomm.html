@@ -14,6 +14,37 @@
 <th:block layout:fragment="script">
 <!-- bootstrap js 적용 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e184a0b11830c4749f06185490e0e4f7"></script>
+<script>
+$(function(){
+   var data = $("#lat").data();
+   var lat = data.lat;
+   var datat = $("#lng").data();
+   var lng = datat.lng;
+   var position = new kakao.maps.LatLng(lat, lng);
+   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: position, // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨         
+    };
+
+   // 지도를 표시할 div와 지도 옵션으로 지도를 생성합니다
+   var map = new kakao.maps.Map(mapContainer, mapOption);
+   
+   // 마커가 표시될 위치입니다 
+   var markerPosition = position; 
+   
+   // 마커를 생성합니다
+   var marker = new kakao.maps.Marker({
+       position: markerPosition
+   });
+   
+   // 마커가 지도 위에 표시되도록 설정합니다
+   marker.setMap(map)
+});
+</script>
+
 </th:block>
 
 <th:block layout:fragment="css">
@@ -70,7 +101,7 @@
     <!-- Custom styles for this template -->
     <link href="../blog/blog.rtl.css" rel="stylesheet">
 </th:block>    
-    
+
 </head>
 <body>
 <div layout:fragment="content">
@@ -95,7 +126,7 @@
         </div>
           <h3 class="mb-0">객실1</h3><br />
           객실정보 : <b class="card-text mb-auto" th:text="${detail1.g_exp}"></b><br />
-          객실요금 : <b class="card-text mb-auto" th:text="${detail1.g_price}+원"></b><br />
+          객실요금 : <b class="card-text mb-auto" th:text="${#numbers.formatInteger(detail1.g_price, 3, 'COMMA')} + '원'"></b><br />
           투숙인원 : <b class="card-text mb-auto" th:text="${detail1.g_person}+명"></b>
         </div>
       </div>
@@ -110,30 +141,18 @@
         </div>
           <h3 class="mb-0">객실2</h3><br />
           객실정보 : <b class="card-text mb-auto" th:text="${detail2.g_exp}"></b><br />
-          객실요금 : <b class="card-text mb-auto" th:text="${detail2.g_price}+원"></b><br />
+          객실요금 : <b class="card-text mb-auto" th:text="${#numbers.formatInteger(detail2.g_price, 3, 'COMMA')} + '원'"></b><br />
           투숙인원 : <b class="card-text mb-auto" th:text="${detail2.g_person}+명"></b>
         </div>
       </div>
     </div>
     
-   
   <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary"></strong>
-          <h3 class="mb-0">숙소1 지도</h3>
-          <div class="mb-1 text-muted">숙소1 지도</div>
-          <p class="card-text mb-auto">숙소1 지도</p>
-          <a href="#" class="stretched-link">상세보기</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-        </div>
-      </div>
+    <div class="col-md-6 overflow-hidden">
+       <div id="map" style="width:100%; height:100%;"></div>
+       <input type="hidden" id="lat" th:data-lat="${detail1.a_lat }">
+       <input type="hidden" id="lng" th:data-lng="${detail1.a_lng }">
     </div>
-    
     
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -160,13 +179,13 @@
 				<div class="form-check">
 				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="g_ido" checked>
 				  <label class="form-check-label" for="flexRadioDefault1">
-				    숙소1-객실1
+				    객실1
 				  </label>
 				</div>
 				<div class="form-check">
 				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="g_idt">
 				  <label class="form-check-label" for="flexRadioDefault2">
-				    숙소1-객실2
+				    객실2
 				  </label>
 				</div>
 			  </div>
