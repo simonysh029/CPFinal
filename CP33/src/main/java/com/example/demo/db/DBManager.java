@@ -14,6 +14,7 @@ import com.example.demo.vo.ListAccommVO;
 import com.example.demo.vo.AccommVO;
 import com.example.demo.vo.DetailAccommVO;
 import com.example.demo.vo.EventVO;
+import com.example.demo.vo.GuestroomVO;
 import com.example.demo.vo.MemberVO;
 import com.example.demo.vo.ReserveVO;
 import com.example.demo.vo.StayVO;
@@ -180,8 +181,6 @@ public class DBManager {
 		session.close();
 		return re;
 	}
-
-	
 	
 	//admin페이지에서 사용
 	
@@ -203,6 +202,13 @@ public class DBManager {
 		List<EventVO> list = null;
 		SqlSession session = factory.openSession();
 		list = session.selectList("event.findAllE");
+		return list;
+	}
+
+	public static List<GuestroomVO> findByaId(String a_id) {
+		List<GuestroomVO> list = null;
+		SqlSession session = factory.openSession();
+		list = session.selectList("guestroom.findByaId", a_id);
 		return list;
 	}
 

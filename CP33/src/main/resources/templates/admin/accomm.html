@@ -114,6 +114,7 @@
 				    <tr>
 				      <th scope="col">#</th>
 				      <th scope="col">숙소 아이디</th>
+				      <th scope="col">숙소 내 객실</th>
 				      <th scope="col">숙소 형태</th>
 				      <th scope="col">숙소 이름</th>
 				      <th scope="col">숙소 주소</th>
@@ -126,6 +127,7 @@
 				    <tr th:each=a:${aList}>
 				      <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
 				      <td th:text="${a.a_id}"></td>
+				      <td><a th:href="@{'/admin/listGuestroom/'+${a.a_id}}">객실 관리</a></td>
 				      <td th:text="${a.a_div}"></td>
 				      <td th:text="${a.a_name}"></td>
 				      <td th:text="${a.a_addr}"></td>
@@ -139,7 +141,6 @@
 		</div>
 	
 	</div>
-
 </div>
 </body>
 </html>   

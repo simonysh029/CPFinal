@@ -101,42 +101,41 @@
 		</div>
 	
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 1500px;">
-			<h2 class="text-center">회원 관리 페이지</h2><br>
+			<h2 class="text-center">숙소 관리 페이지</h2><br>
 			
 		<form>				
 			<div class="btn-group" role="group" aria-label="Basic example">
-			  <a href="/admin/addMember"><button type="submit" class="btn btn-primary">추가</button></a>
-			  <a href="/admin/upMember"><button type="submit" class="btn btn-primary">수정</button></a>
-			  <a href="/admin/delMember"><button type="submit" class="btn btn-primary">삭제</button></a>
+			  <a href="/admin/addAccomm"><button type="submit" class="btn btn-primary">추가</button></a>
+			  <a href="/admin/upAccomm"><button type="submit" class="btn btn-primary">수정</button></a>
+			  <a href="/admin/delAccomm"><button type="submit" class="btn btn-primary">삭제</button></a>
 			</div>
 			<table class="table">
 				  <thead>
 				    <tr>
 				      <th scope="col">#</th>
-				      <th scope="col">아이디</th>
-				      <th scope="col">주민등록번호</th>
-				      <th scope="col">전화번호</th>
-				      <th scope="col">주소</th>
-				      <th scope="col">일반사용자/관리자</th>
-				      <th scope="col">마일리지</th>
+				      <th scope="col">객실 아이디</th>
+				      <th scope="col">객실 가격</th>
+				      <th scope="col">투숙 예정 인원</th>
+				      <th scope="col">객실 설명</th>
+				      <th scope="col">숙소 평점</th>
 				    </tr>
 				  </thead>
 				  <tbody class="table-group-divider">
-				    <tr th:each=m:${mList}>
+				    <tr th:each=g:${gList}>
 				      <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
-				      <td th:text="${m.m_id}"></td>
-				      <td th:text="${m.m_regist}"></td>
-				      <td th:text="${m.m_phone}"></td>
-				      <td th:text="${m.m_addr}"></td>
-				      <td th:text="${m.m_role}"></td>
-				      <td th:text="${m.m_mile}"></td>
+				      <td th:text="${g.g_id}"></td>
+				      <td th:text="${g.g_price}"></td>
+				      <td th:text="${g.g_person}"></td>
+				      <td th:text="${g.g_exp}"></td>
+				      <td th:text="${g.g_img}"></td>
 				    </tr>
 				  </tbody>
 			</table>
-		</form>		
-			
+		</form>
 		</div>
+	
 	</div>
+
 </div>
 </body>
 </html>   

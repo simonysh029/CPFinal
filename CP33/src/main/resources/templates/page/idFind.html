@@ -37,17 +37,17 @@
 <body>
 <div layout:fragment="content">
 <div class="container">
-	<div class="text-center">
-	<form action="/page/idFind" method="post">
-	    <h2>아이디 찾기</h2>
-	   	이름 : <input type="text" name="m_name"><br>
-	    주민등록번호 : <input type="text" name="m_regist"><br>
-	    전화번호 : <input type="text" name="m_phone"><br>
-	    <button type="submit">찾기</button>
-	    <button type="reset">재입력</button>
-	    <button type="button" id="login">로그인</button>
-	    
-	</form>
+	<h2 class="text-center">아이디 찾기</h2>
+	<div class="d-flex justify-content-center">
+		<form action="/page/idFind" method="post">
+		   	<input type="text" class="form-control" name="m_name" placeholder="이름 입력"><br>
+		    <input type="text" class="form-control" name="m_regist" placeholder="주민등록번호 입력"><br>
+		    <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력"><br>
+		    <button type="submit">찾기</button>
+		    <button type="reset">재입력</button>
+		    <button type="button" id="login">로그인</button>
+		    
+		</form>
 	</div>
 </div>
 </div>

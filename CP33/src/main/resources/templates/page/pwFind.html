@@ -32,12 +32,12 @@
 <body>		
 <div layout:fragment="content">
 <div class="container">
-	<div class="text-center">
-	    <h2>비밀번호 찾기</h2>
+	<h2 class="text-center">비밀번호 찾기</h2>
+	<div class="d-flex justify-content-center">
 		<form action="/page/pwFind" method="post">
-	      	아이디  : <input type="text" name="m_id"><br>
-	        이름   : <input type="text" name="m_name"><br>
-	        전화번호 : <input type="text" name="m_phone"><br>
+	      	<input type="text" class="form-control" name="m_id" placeholder="아이디 입력"><br>
+	        <input type="text" class="form-control" name="m_name" placeholder="비밀번호 입력"><br>
+	        <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력"><br>
 		    <button type="submit">찾기</button>
 		    <button type="reset">재입력</button>
 		    <button type="button" id="login">로그인</button>
