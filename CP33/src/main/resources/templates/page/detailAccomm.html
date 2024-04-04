@@ -109,7 +109,7 @@ $(function(){
   <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
     <div class="col-md-6 px-0">
     	<h1 class="mb-0" th:text="${detail1.a_name}"></h1><br />
-    	<div><img th:src="@{'/images/'+${detail1.a_img}}" style="width: 100%; height: 100%;"/></div><br />
+    	<div><img th:src="@{'/images/'+${detail1.a_img}}" style="width: 600px; height: 400px;"/></div><br />
     	소개 : <span class="card-text mb-auto" th:text="${detail1.a_exp}"></span><br />
     	위치 : <span class="card-text mb-auto" th:text="${detail1.a_addr}"></span>
     </div>
@@ -122,7 +122,7 @@ $(function(){
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary"></strong>
         <div class="col-auto d-none d-lg-block">
-          <div><img th:src="@{'/images/'+${detail1.g_img}}" style="width: 100%; height: 100%;"/></div><br />
+          <div><img th:src="@{'/images/'+${detail1.g_img}}" style="width: 580px; height: 400px;"/></div><br />
         </div>
           <h3 class="mb-0">객실1</h3><br />
           객실정보 : <b class="card-text mb-auto" th:text="${detail1.g_exp}"></b><br />
@@ -137,7 +137,7 @@ $(function(){
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary"></strong>
         <div class="col-auto d-none d-lg-block">
-          <div><img th:src="@{'/images/'+${detail2.g_img}}" style="width: 100%; height: 100%;"/></div><br />
+          <div><img th:src="@{'/images/'+${detail2.g_img}}" style="width: 580px; height: 400px;"/></div><br />
         </div>
           <h3 class="mb-0">객실2</h3><br />
           객실정보 : <b class="card-text mb-auto" th:text="${detail2.g_exp}"></b><br />
@@ -167,7 +167,7 @@ $(function(){
 			    <input type="date" class="form-control" id="inputPassword4" name="r_end">
 			  </div>
 			  <div class="col-12">
-				<select id="g_person" class="form-select" aria-label="Default select example" name="r_person">
+				<select class="form-select" aria-label="Default select example" name="r_person">
                	   <option value="1">1인</option>
                    <option value="2">2인</option>
                    <option value="3">3인</option>
@@ -177,13 +177,13 @@ $(function(){
 			  </div>
 			  <div class="col-12">
 				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="g_ido" checked>
+				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:value="${detail1.g_id}" checked>
 				  <label class="form-check-label" for="flexRadioDefault1">
 				    객실1
 				  </label>
 				</div>
 				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="g_idt">
+				  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" th:value="${detail2.g_id}">
 				  <label class="form-check-label" for="flexRadioDefault2">
 				    객실2
 				  </label>

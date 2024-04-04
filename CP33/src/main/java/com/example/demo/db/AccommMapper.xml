@@ -24,14 +24,13 @@
 	                AND a.a_div = #{a_div}
 	                AND g.g_person >= #{g_person}
 	                AND a.a_addr LIKE CONCAT('%', #{keyword}, '%')
-	            </if>
-	            
+	            </if>            
 	            ORDER BY a_grade DESC
 	        ) a, (SELECT @rownum := 0) r
 	    ) b
 	</select>
 	
-	<!-- 추천 숙소 -->
+	<!-- 메인화면 추천숙소 출력 -->
 	<select id="popH" resultType="accommVO">
 		SELECT a_id, a_name, a_img 
 		FROM (
@@ -97,6 +96,7 @@
 		) b
 	</select>
 	
+	<!-- 숙소상세화면 객실정보 출력 -->
 	<select id="detail1" resultType="detailaccVO">
 		SELECT a.a_name, a.a_addr, a.a_grade, a.a_lat, a.a_lng, a.a_exp, a.a_img,
 	    		g.g_id, g.g_price, g.g_person, g.g_exp, g.g_img
