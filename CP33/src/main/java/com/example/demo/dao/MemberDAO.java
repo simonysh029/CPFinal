@@ -31,4 +31,14 @@ public class MemberDAO {
 		return DBManager.updateMember(m);
 	}
 
+	//관리자 화면에서 넘어간 회원정보수정
+	public int updateMemberByAdmin(MemberVO m) {
+		return DBManager.updateMemberByAdmin(m);
+	}
+	
+//	public String getNextNo(String m_id) {
+//		return DBManager.getNextNo(m_id);
+//	}
+	
+
 }

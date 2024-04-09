@@ -10,6 +10,16 @@
 
 <th:block layout:fragment="script">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script>
+	      function checkOnlyOne(element) {
+	        const checkboxes = document.getElementsByName("e_no");
+	        checkboxes.forEach((cb) => {
+	          cb.checked = false;
+	        })
+	        element.checked = true;
+	      }
+	   </script>
 </th:block>
 
 <th:block layout:fragment="css">
@@ -76,19 +86,19 @@
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		      <li>
-		        <a href="/admin/member" class="nav-link link-dark">
+		        <a href="/admin/listMember" class="nav-link link-dark">
 		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
 		          회원 관리
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/admin/accomm" class="nav-link link-dark">
+		        <a href="/admin/listAccomm" class="nav-link link-dark">
 		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
 		          숙소 관리
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/admin/event" class="nav-link link-dark">
+		        <a href="/admin/listEvent" class="nav-link link-dark">
 		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
 		          이벤트 관리
 		        </a>
@@ -102,13 +112,12 @@
 	
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 1500px;">
 			<h2 class="text-center">이벤트 관리 페이지</h2><br>
-			
-		<form>				
 			<div class="btn-group" role="group" aria-label="Basic example">
-			  <a href="/admin/addEvent"><button type="submit" class="btn btn-primary">추가</button></a>
-			  <a href="/admin/upEvent"><button type="submit" class="btn btn-primary">수정</button></a>
-			  <a href="/admin/delEvent"><button type="submit" class="btn btn-primary">삭제</button></a>
-			</div>
+			  <a href="/admin/insertEvent"><button type="submit" class="btn btn-primary">추가</button></a>
+			  <a href="/admin/updateEvent"><button type="submit" class="btn btn-primary">수정</button></a>
+			  <a href="/admin/deleteEvent"><button type="submit" class="btn btn-primary">삭제</button></a>
+			</div>			
+		<form>				
 			<table class="table">
 				  <thead>
 				    <tr>
@@ -121,7 +130,7 @@
 				  </thead>
 				  <tbody class="table-group-divider">
 				    <tr th:each=e:${eList}>
-				      <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
+				      <th scope="row"><input class="form-check-input" type="checkbox" onclick='checkOnlyOne(this)' name="e_no" value="${e.e_no}" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
 				      <td th:text="${e.e_no}"></td>
 				      <td th:text="${e.e_all}"></td>
 				      <td th:text="${e.e_each}"></td>

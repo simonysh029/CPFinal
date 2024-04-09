@@ -15,8 +15,4 @@
 		select * from event where e_no=${e_no}
 	</select>
 	
-	<select id="findAllE" resultType="eventVO">
-		select * from event
-	</select>
-	
 </mapper>

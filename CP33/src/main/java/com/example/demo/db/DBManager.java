@@ -212,4 +212,21 @@ public class DBManager {
 		return list;
 	}
 
+	public static int updateMemberByAdmin(MemberVO m) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("member.updateMemberByAdmin",m);
+		session.commit();
+		session.close();
+		return re;
+	}
+
+//	public static String getNextNo(String m_id) {
+//		String nextNo = null;
+//		SqlSession session = factory.openSession();
+//		nextNo = session.selectOne("member.getNextNo", m_id);
+//		session.close();
+//		return nextNo;
+//	}
+
 }

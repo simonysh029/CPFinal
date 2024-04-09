@@ -24,4 +24,9 @@
 	<update id="updateMember" parameterType="memberVO">
 		update member set m_id=#{m_id}, m_pw=#{m_pw}, m_name=#{m_name}, m_addr=#{m_addr}, m_phone=#{m_phone} where m_id=#{m_id}
 	</update>
+	
+	<update id="updateMemberByAdmin" parameterType="memberVO">
+		update member set m_id=#{m_id}, m_pw=#{m_pw}, m_name=#{m_name}, m_addr=#{m_addr}, m_phone=#{m_phone}, m_mile=#{m_mile} where m_id=#{m_id}
+	</update>
+	
 </mapper>

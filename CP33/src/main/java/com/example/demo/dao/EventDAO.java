@@ -24,7 +24,7 @@ public class EventDAO {
 	}
 
 	public List<EventVO> findAllE() {
-		return DBManager.findAllE();
+		return DBManager.listEvent();
 	}
 
 }

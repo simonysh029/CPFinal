@@ -10,6 +10,16 @@
 
 <th:block layout:fragment="script">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script>
+	      function checkOnlyOne(element) {
+	        const checkboxes = document.getElementsByName("g_id");
+	        checkboxes.forEach((cb) => {
+	          cb.checked = false;
+	        })
+	        element.checked = true;
+	      }
+	   </script>
 </th:block>
 
 <th:block layout:fragment="css">
@@ -76,19 +86,19 @@
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		      <li>
-		        <a href="/admin/member" class="nav-link link-dark">
+		        <a href="/admin/listMember" class="nav-link link-dark">
 		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
 		          회원 관리
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/admin/accomm" class="nav-link link-dark">
+		        <a href="/admin/listAccomm" class="nav-link link-dark">
 		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
 		          숙소 관리
 		        </a>
 		      </li>
 		      <li>
-		        <a href="/admin/event" class="nav-link link-dark">
+		        <a href="/admin/listEvent" class="nav-link link-dark">
 		          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
 		          이벤트 관리
 		        </a>
@@ -101,42 +111,40 @@
 		</div>
 	
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 1500px;">
-			<h2 class="text-center">회원 관리 페이지</h2><br>
-			
-		<form>				
+			<h2 class="text-center">숙소 관리 페이지</h2><br>			
 			<div class="btn-group" role="group" aria-label="Basic example">
-			  <a href="/admin/addMember"><button type="submit" class="btn btn-primary">추가</button></a>
-			  <a href="/admin/upMember"><button type="submit" class="btn btn-primary">수정</button></a>
-			  <a href="/admin/delMember"><button type="submit" class="btn btn-primary">삭제</button></a>
+			  <a href="/admin/insertGuestroom"><button type="submit" class="btn btn-primary">추가</button></a>
+			  <a href="/admin/updateGuestroom"><button type="submit" class="btn btn-primary">수정</button></a>
+			  <a href="/admin/deleteGuestroom"><button type="submit" class="btn btn-primary">삭제</button></a>
 			</div>
+		<form>
 			<table class="table">
 				  <thead>
 				    <tr>
 				      <th scope="col">#</th>
-				      <th scope="col">아이디</th>
-				      <th scope="col">주민등록번호</th>
-				      <th scope="col">전화번호</th>
-				      <th scope="col">주소</th>
-				      <th scope="col">일반사용자/관리자</th>
-				      <th scope="col">마일리지</th>
+				      <th scope="col">객실 아이디</th>
+				      <th scope="col">객실 가격</th>
+				      <th scope="col">투숙 예정 인원</th>
+				      <th scope="col">객실 설명</th>
+				      <th scope="col">숙소 평점</th>
 				    </tr>
 				  </thead>
 				  <tbody class="table-group-divider">
-				    <tr th:each=m:${mList}>
-				      <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
-				      <td th:text="${m.m_id}"></td>
-				      <td th:text="${m.m_regist}"></td>
-				      <td th:text="${m.m_phone}"></td>
-				      <td th:text="${m.m_addr}"></td>
-				      <td th:text="${m.m_role}"></td>
-				      <td th:text="${m.m_mile}"></td>
+				    <tr th:each=g:${gList}>
+				     <th scope="row"><input class="form-check-input" type="checkbox" onclick='checkOnlyOne(this)' name="g_id" value="${g.g_id}" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
+				      <td th:text="${g.g_id}"></td>
+				      <td th:text="${g.g_price}"></td>
+				      <td th:text="${g.g_person}"></td>
+				      <td th:text="${g.g_exp}"></td>
+				      <td th:text="${g.g_img}"></td>
 				    </tr>
 				  </tbody>
 			</table>
-		</form>		
-			
+		</form>
 		</div>
+	
 	</div>
+
 </div>
 </body>
 </html>   
