@@ -17,6 +17,11 @@
 		insert into member values(#{m_id},#{m_pw},#{m_name},#{m_role},#{m_regist},#{m_phone},#{m_addr},#{m_mile})
 	</insert>
 	
+	<insert id="insertAdmin" parameterType="memberVO">
+		insert into member values(#{m_id},#{m_pw},#{m_name},"user",#{m_regist},#{m_phone},#{m_addr},#{m_mile})
+	</insert>
+	
+	
 	<update id="updateById" parameterType="memberVO">
 		update member set m_pw=#{update_pw}, m_name=#{m_name}, m_role=#{m_role} where m_id=#{m_id}
 	</update>
@@ -26,7 +31,11 @@
 	</update>
 	
 	<update id="updateMemberByAdmin" parameterType="memberVO">
-		update member set m_id=#{m_id}, m_pw=#{m_pw}, m_name=#{m_name}, m_addr=#{m_addr}, m_phone=#{m_phone}, m_mile=#{m_mile} where m_id=#{m_id}
+		update member set m_id=#{m_id}, m_pw=#{m_pw}, m_name=#{m_name}, m_addr=#{m_addr}, m_phone=#{m_phone}, m_role="user", m_mile=#{m_mile} where m_id=#{m_id}
 	</update>
+	
+	<delete id="deleteM" parameterType="memberVO">
+		delete from member where m_id=#{m_id}
+	</delete>
 	
 </mapper>

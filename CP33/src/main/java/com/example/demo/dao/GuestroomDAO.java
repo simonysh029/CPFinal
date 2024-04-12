@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.db.DBAdminManager;
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.GuestroomVO;
 
@@ -11,6 +12,6 @@ import com.example.demo.vo.GuestroomVO;
 public class GuestroomDAO {
 
 	public List<GuestroomVO> findByaId(String a_id) {
-		return DBManager.findByaId(a_id);
+		return DBAdminManager.findByaId(a_id);
 	}
 }

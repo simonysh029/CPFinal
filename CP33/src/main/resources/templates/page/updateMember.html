@@ -29,7 +29,7 @@
 		<div class="d-flex justify-content-center">
 			<form action="/page/updateMember" method="post">
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		      	<input type="text" class="form-control" name="username" placeholder="아이디 입력">
+		      	<input type="password" class="form-control" name="username" placeholder="아이디 입력">
 		      	<input type="text" class="form-control" name="password" placeholder="비밀번호 입력">
 		      	<input type="text" class="form-control" name="m_name" placeholder="이름 입력">
 			    <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력">

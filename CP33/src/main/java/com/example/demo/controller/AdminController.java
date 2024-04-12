@@ -56,50 +56,50 @@ public class AdminController {
 		List<GuestroomVO> gList = gdao.findByaId(a_id);
 		System.out.println(a_id);
 		model.addAttribute("gList", gList);
-		String view = "/admin/listGuestroom";
-		return view;
+		return "/admin/listGuestroom";
 	}
 	
-	//회원 정보 입력, 수정, 삭제
-	
+//회원 정보 입력, 수정, 삭제
 	@GetMapping("/admin/insertMember")
 	public void insertMemberForm() {
 	}
-//	@PostMapping("/admin/insertMember")
-//	public String insertMember(MemberVO m) {
-//		mdao.insert(m);
-//		return "/admin/listMember";
-//	}
-	
-	@GetMapping("/admin/updateMember")
-	public void updateMemberForm() {		
+	@PostMapping("/admin/insertMember")
+	public String insertMember(MemberVO m) {
+		m.setM_pw(passwordEncoder.encode(m.getM_pw()));
+		mdao.insertAdmin(m);
+		return "redirect:/admin/listMember";
 	}
-//	@PostMapping("/admin/updateMember")
-//	public String updateMember(MemberVO m, HttpSession session) {
-//		String u_id = session.getId();
-//		m.setM_id(u_id);
-//		m.setM_pw(passwordEncoder.encode(m.getM_pw()));
-//		mdao.updateMemberByAdmin(m); 
-//		return "/admin/listMember";
-//	}
-
-	//	@GetMapping("/admin/deleteMember")
-//	public void deleteMember(String m_id) {
-//		
-//	}
-//	
-//	//숙소 정보 입력, 수정, 삭제
-//	
+	@GetMapping("/admin/updateMember/{cid}")
+	public String updateMember(@PathVariable("cid") String cid, Model model) {
+		model.addAttribute("list", mdao.findById(cid));
+		return "/admin/updateMember";
+	}
+	@PostMapping("/admin/updateMember")
+	public String updateMemberForm(MemberVO m) {	
+		m.setM_id(m.getM_id());
+		m.setM_pw(passwordEncoder.encode(m.getM_pw()));
+		mdao.updateMemberByAdmin(m); 
+		return "redirect:/admin/listMember";
+	}
+	@GetMapping("/admin/deleteMember/{cid}")
+	public String deleteMember(@PathVariable("cid") String cid) {
+		mdao.deleteM(cid);
+		return "redirect:/admin/listMember";
+	}
+	
+//숙소 정보 입력, 수정, 삭제
 	@GetMapping("/admin/insertAccomm")
 	public void insertAccommForm() {
 	}
-//	@PostMapping("/admin/insertAccomm")
-//	public String insertAccomm(AccommVO avo) {
-//		
-//		return "/admin/listAccomm";
-//	}
-	@GetMapping("/admin/updateAccomm")
-	public void updateAccommForm() {
+	@PostMapping("/admin/insertAccomm")
+	public String insertAccomm(AccommVO a) {
+		adao.insertAccomm(a);
+		return "redirect:/admin/listAccomm";
+	}
+	@GetMapping("/admin/updateAccomm/{aid}")
+	public String updateAccommForm(@PathVariable("aid") String a_id, Model model) {
+		model.addAttribute("aid", adao.findByAid(a_id));
+		return "/admin/updateAccomm";
 	}
 //	@PostMapping("/admin/updateAccomm")
 //	public String updateMember(AccommVO avo) {
@@ -110,30 +110,36 @@ public class AdminController {
 //	public void deleteAccomm(String a_id) {
 //		
 //	}
-//
-//	//이벤트 정보 입력, 수정, 삭제
-//	
+//이벤트 정보 입력, 수정, 삭제
 	@GetMapping("/admin/insertEvent")
-	public void insertEventForm() {
+	public void insertEventForm(Model model) {
+		model.addAttribute("e_no", edao.getNextNo());
+	}	
+	@PostMapping("/admin/insertEvent")
+	public String insertEvent(EventVO e) {	
+		edao.insertEvent(e);
+		return "redirect:/admin/listEvent";
 	}
-//	@PostMapping("/admin/insertEvent")
-//	public String insertEvent(EventVO evo) {
-//		
-//		return "/admin/event";
-//	}
-	@GetMapping("/admin/updateEvent")
-	public void updateEventForm() {
+	@GetMapping("/admin/updateEvent/{eno}")
+	public String updateEventForm(@PathVariable("eno") int e_no, Model model) {
+		model.addAttribute("eno", edao.findByNo(e_no));
+		return "/admin/updateEvent";
 	}
-//	@PostMapping("/admin/updateEvent")
-//	public String updateEvent(EventVO evo) {
-//		
-//		return "/admin/event";
-//	}
-//	@GetMapping("/admin/deleteEvent")
-//	public void deleteEvent(int e_no) {
-//		
-//	}
-//	
+	@PostMapping("/admin/updateEvent")
+	public String updateEvent(EventVO e) {
+		edao.updateEventByAdmin(e);
+		return "redirect:/admin/listEvent";
+	}
+	@GetMapping("/admin/deleteEvent/{eno}")
+	public String deleteEvent(@PathVariable("eno") int e_no) {
+		edao.deleteE(e_no);
+		return "redirect:/admin/listEvent";
+	}
+	
+	
+
+	
+		
 //	//객실 정보 입력, 수정, 삭제
 //	
 	@GetMapping("/admin/insertGuestroom")

@@ -7,12 +7,29 @@
 		select * from event where e_main='Y'
 	</select>
 	
+	<select id="getNextNo" resultType="Integer">
+		SELECT IFNULL(MAX(e_no), 0) + 1 FROM event
+	</select>
+	
 	<select id="listEvent" resultType="eventVO">
 		select * from event
 	</select>
 	
 	<select id="findByNo" resultType="eventVO">
-		select * from event where e_no=${e_no}
+		select * from event where e_no=#{e_no}
 	</select>
 	
+	<insert id="insertEvent" parameterType="eventVO">
+		insert into event values(#{e_no},#{e_all},#{e_each},#{e_main})
+	</insert>
+
+	<update id="updateEventByAdmin" parameterType="eventVO">
+		UPDATE event SET e_all=#{e_all}, e_each=#{e_each}, e_main=#{e_main} WHERE e_no = #{e_no}
+
+	</update>
+
+	<delete id="deleteE" parameterType="Integer">
+		DELETE FROM event WHERE e_no = #{e_no}
+	</delete>
+
 </mapper>

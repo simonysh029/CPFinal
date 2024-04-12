@@ -23,7 +23,7 @@
 		<h2 class="text-center">숙소 정보 수정(관리자)</h2><br>
 		<div class="d-flex justify-content-center">
 			<form action="/admin/updateAccomm" method="post">
-		      	<input type="text" class="form-control" name="a_id" placeholder="숙소 아이디 입력">
+		      	<input type="hidden" class="form-control" name="a_id" th:value="${aid.a_id}">
 		      	<input type="text" class="form-control" name="a_div" placeholder="숙소 숙박 형태 입력">
 		      	<input type="text" class="form-control" name="a_name" placeholder="숙소 명 입력">
 			    <input type="text" class="form-control" name="a_addr" placeholder="숙소 주소 입력">

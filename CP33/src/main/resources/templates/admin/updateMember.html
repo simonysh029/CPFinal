@@ -24,8 +24,8 @@
 		<div class="d-flex justify-content-center">
 			<form action="/admin/updateMember" method="post">
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		      	<input type="text" class="form-control" name="${session.id}" placeholder="아이디 입력">
-		      	<input type="text" class="form-control" name="m_pw" placeholder="비밀번호 입력">
+		      	<input type="text" class="form-control" name="m_id" th:value="${list.m_id}">
+		      	<input type="password" class="form-control" name="m_pw" placeholder="비밀번호 입력">
 		      	<input type="text" class="form-control" name="m_name" placeholder="이름 입력">
 			    <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력">
 		  		<input type="text" class="form-control" name="m_addr" placeholder="주소 입력">

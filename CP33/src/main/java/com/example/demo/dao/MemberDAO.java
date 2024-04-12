@@ -4,15 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.db.DBAdminManager;
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.MemberVO;
 
 @Repository
 public class MemberDAO {
-	
-	public List<MemberVO> findAll() {
-		return DBManager.findAll();
-	}
 
 	public MemberVO findById(String username) {
 		return DBManager.findById(username);
@@ -31,14 +28,21 @@ public class MemberDAO {
 		return DBManager.updateMember(m);
 	}
 
+	//관리자 화면에서 회원등록
+	public int insertAdmin(MemberVO m) {
+		return DBAdminManager.insertAdmin(m);
+	}
 	//관리자 화면에서 넘어간 회원정보수정
 	public int updateMemberByAdmin(MemberVO m) {
-		return DBManager.updateMemberByAdmin(m);
+		return DBAdminManager.updateMemberByAdmin(m);
 	}
-	
-//	public String getNextNo(String m_id) {
-//		return DBManager.getNextNo(m_id);
-//	}
-	
+
+	public List<MemberVO> findAll() {
+		return DBAdminManager.findAll();
+	}
+		
+	public int deleteM(String cid) {
+		return DBAdminManager.deleteM(cid);		
+	}	
 
 }

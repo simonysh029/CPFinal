@@ -150,4 +150,12 @@
 		select * from accomm
 	</select>
 	
+		<insert id="insertAccomm" parameterType="accommVO">
+		insert into accomm values(#{a_id},#{a_div},#{a_name},#{a_addr},#{a_grade},#{a_lat},#{a_lng},#{a_exp},#{a_img})
+	</insert>
+	
+	<select id="findByAid" resultType="accommVO">
+		SELECT * FROM accomm WHERE a_id = #{a_id}
+	</select>
+	
 </mapper>

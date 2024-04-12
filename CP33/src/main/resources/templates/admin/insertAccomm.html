@@ -23,15 +23,18 @@
 		<h2 class="text-center">숙소 정보 추가(관리자)</h2><br>
 		<div class="d-flex justify-content-center">
 			<form action="/admin/insertAccomm" method="post">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		      	<input type="text" class="form-control" name="a_id" placeholder="숙소 아이디 입력">
 		      	<input type="text" class="form-control" name="a_div" placeholder="숙소 숙박 형태 입력">
 		      	<input type="text" class="form-control" name="a_name" placeholder="숙소 명 입력">
 			    <input type="text" class="form-control" name="a_addr" placeholder="숙소 주소 입력">
 		  		<input type="number" class="form-control" name="a_grade" placeholder="숙소 평점 입력">
+		  		<input type="text" class="form-control" name="a_lat" placeholder="숙소 위도 입력">
+		  		<input type="text" class="form-control" name="a_lng" placeholder="숙소 경도 입력">
 		  		<input type="text" class="form-control" name="a_exp" placeholder="숙소 설명 입력">
 		  		<input type="text" class="form-control" name="a_img" placeholder="숙소 사진 등록"> <br>
 			    <button type="submit">추가</button>
-			    <a href="/admin/accomm"><button>이전으로</button></a><br>
+			    <button><a href="/admin/listAccomm">이전으로</a></button><br>
 			</form>
 		</div>
 	</div>

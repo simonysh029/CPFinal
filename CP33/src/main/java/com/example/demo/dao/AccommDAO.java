@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.db.DBAdminManager;
 import com.example.demo.db.DBManager;
 import com.example.demo.vo.ListAccommVO;
 import com.example.demo.vo.AccommVO;
@@ -44,12 +45,19 @@ public class AccommDAO {
 		return DBManager.detailAcc2(a_id);
 	}
 
-	public List<AccommVO> findAllA() {
-		return DBManager.findAllA();
-	}
-
 	public int getTotalRecord(String a_div, int g_person, String keyword) {
 		return DBManager.getTotalRecord(a_div, g_person, keyword);
 	}
+	
+	public List<AccommVO> findAllA() {
+		return DBAdminManager.findAllA();
+	}
 
+	public int insertAccomm(AccommVO a) {
+		return DBAdminManager.insertAccomm(a);
+	}
+
+	public List<AccommVO> findByAid(String a_id) {
+		return DBAdminManager.findByAid(a_id);
+	}
 }

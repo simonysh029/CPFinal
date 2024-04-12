@@ -7,37 +7,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-
 <th:block layout:fragment="script">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script>
-		
-			var cid;
-			
-		    function checkOnlyOne(element) {
-		  	  const checkboxes = document.getElementsByName("m_id");
-		      checkboxes.forEach((cb) => {
-		        cb.checked = false;
-		      })
-		      element.checked = true;
-		      $('input:checkbox[name=m_id]').each(function (index) {
-				    if ($(this).is(":checked")) {
-				    	cid = $(this).val()
-				    }
-				});
-		    }
-		
-		    function insert(){
-		   		location.href="/admin/insertMember"
-		    }
-		    function update(){
-		   		location.href="/admin/updateMember/"+cid; 
-		    }
-		    function deleteM(){
-		   		location.href="/admin/deleteMember/"+cid; 
-		    }
-		
+		var cid;
+	    function checkOnlyOne(element) {
+	  	  const checkboxes = document.getElementsByName("m_id");
+	      checkboxes.forEach((cb) => {
+	        cb.checked = false;
+	      })
+	      element.checked = true;
+	      $('input:checkbox[name=m_id]').each(function (index) {
+			    if ($(this).is(":checked")) {
+			    	cid = $(this).val()
+			    }
+			});
+	    }
+	    function insert(){
+	   		location.href="/admin/insertMember"
+	    }
+	    function update(){
+	   		location.href="/admin/updateMember/"+cid; 
+	    }
+	    function deleteM(){
+	   		location.href="/admin/deleteMember/"+cid; 
+	    }
 	</script>
 </th:block>
 

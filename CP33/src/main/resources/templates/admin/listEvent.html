@@ -12,13 +12,28 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script>
-	      function checkOnlyOne(element) {
-	        const checkboxes = document.getElementsByName("e_no");
-	        checkboxes.forEach((cb) => {
-	          cb.checked = false;
-	        })
-	        element.checked = true;
-	      }
+			var eno;
+		    function checkOnlyOne(element) {
+		  	  const checkboxes = document.getElementsByName("e_no");
+		      checkboxes.forEach((cb) => {
+		        cb.checked = false;
+		      })
+		      element.checked = true;
+		      $('input:checkbox[name=e_no]').each(function (index) {
+				    if ($(this).is(":checked")) {
+				    	eno = $(this).val()
+				    }
+				});
+		    }
+		    function insert(){
+		   		location.href="/admin/insertEvent";
+		    }
+		    function update(){
+		   		location.href="/admin/updateEvent/"+eno; 
+		    }
+		    function deleteE(){
+		   		location.href="/admin/deleteEvent/"+eno; 
+		    }
 	   </script>
 </th:block>
 
@@ -113,9 +128,9 @@
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 1500px;">
 			<h2 class="text-center">이벤트 관리 페이지</h2><br>
 			<div class="btn-group" role="group" aria-label="Basic example">
-			  <a href="/admin/insertEvent"><button type="submit" class="btn btn-primary">추가</button></a>
-			  <a href="/admin/updateEvent"><button type="submit" class="btn btn-primary">수정</button></a>
-			  <a href="/admin/deleteEvent"><button type="submit" class="btn btn-primary">삭제</button></a>
+			  <button type="button" onclick="insert()" class="btn btn-primary">추가</button>&nbsp;
+			  <button type="button" onclick="update()" class="btn btn-primary">수정</button>&nbsp;
+			  <button type="button" onclick="deleteE()" class="btn btn-primary">삭제</button>
 			</div>			
 		<form>				
 			<table class="table">
@@ -130,7 +145,7 @@
 				  </thead>
 				  <tbody class="table-group-divider">
 				    <tr th:each=e:${eList}>
-				      <th scope="row"><input class="form-check-input" type="checkbox" onclick='checkOnlyOne(this)' name="e_no" value="${e.e_no}" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label></th>
+				      <th scope="row"><input class="form-check-input" type="checkbox" onclick='checkOnlyOne(this)' name="e_no" th:value="${e.e_no}" id="defaultCheck1"></th>
 				      <td th:text="${e.e_no}"></td>
 				      <td th:text="${e.e_all}"></td>
 				      <td th:text="${e.e_each}"></td>
