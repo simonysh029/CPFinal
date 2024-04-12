@@ -31,19 +31,19 @@
 <body>
 <div layout:fragment="content">
 	<div class="container">
-		<h2 class="text-center">회원가입</h2>
+		<h2 class="text-center">회원가입</h2><br />
 		<div class="d-flex justify-content-center">
 			<form action="/page/join" method="post">
-			    <input type="text" name="username" class="form-control" placeholder="아이디 입력"><br>
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			    <input type="password" name="password" class="form-control" placeholder="비밀번호 입력"><br>
+			    <input type="text" name="m_id" class="form-control" placeholder="아이디 입력"><br>
+			    <input type="password" name="m_pw" class="form-control" placeholder="비밀번호 입력"><br>
 			    <input type="text" name="m_name" class="form-control" placeholder="이름 입력"><br>
 			    <input type="text" name="m_regist" class="form-control" placeholder="주민등록번호 입력"><br>
 			    <input type="text" name="m_phone" class="form-control" placeholder="전화번호 입력"><br>
 				<input type="text" name="m_addr" class="form-control" placeholder="주소 입력"><br>
 			  	<input type="hidden" name="m_role" value="user">
-			    <button type="submit">회원가입</button>
-			    <button type="button" id="login">로그인</button>
+			    <button type="submit" class="btn btn-danger btn-lg">회원가입</button>
+			    <button type="button" id="login" class="btn btn-danger btn-lg">로그인</button>
 			</form>
 		</div>
 	</div>

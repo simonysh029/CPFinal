@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#712cf9">
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 <title>Insert title here</title>
 
 <th:block layout:fragment="script">
@@ -17,6 +19,33 @@
 	$(function(){
 		$("#login").click(function(){
 			location.href="/page/login"
+		});
+		
+		$('#form').submit(function(event) {
+		    event.preventDefault();	
+			
+		    var formData = {
+				'm_name': $('#m_name').val(),
+				'm_id': $('#m_id').val(),
+				'm_phone': $('#m_phone').val()
+		    };
+		    
+		    var csrfToken = $("meta[name='_csrf']").attr("content");
+		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		    
+		    $.ajax({
+		        type: 'POST',
+		        url: '/page/pwFind',
+		        beforeSend : function(xhr)
+	            {
+					xhr.setRequestHeader(csrfHeader, csrfToken);
+	            },
+		        data: formData,
+		        success: function(response) {
+		            $(".modal-body").html(response);
+		            $(".modal").modal("show");
+		        }
+		    });
 		});
 	});
 </script>
@@ -31,16 +60,34 @@
 
 <body>		
 <div layout:fragment="content">
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">비밀번호 찾기</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
-	<h2 class="text-center">비밀번호 찾기</h2>
+	<h2 class="text-center">비밀번호 찾기</h2><br />
 	<div class="d-flex justify-content-center">
-		<form action="/page/pwFind" method="post">
-	      	<input type="text" class="form-control" name="m_id" placeholder="아이디 입력"><br>
-	        <input type="text" class="form-control" name="m_name" placeholder="비밀번호 입력"><br>
-	        <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력"><br>
-		    <button type="submit">찾기</button>
-		    <button type="reset">재입력</button>
-		    <button type="button" id="login">로그인</button>
+		<form id="form">
+	      	<input type="text" class="form-control" id="m_id" name="m_id" placeholder="아이디 입력"><br>
+	        <input type="text" class="form-control" id="m_name" name="m_name" placeholder="이름 입력"><br>
+	        <input type="text" class="form-control" id="m_phone" name="m_phone" placeholder="전화번호 입력"><br>
+		    <button type="submit" class="btn btn-danger btn-lg">찾기</button>
+		    <button type="reset" class="btn btn-danger btn-lg">재입력</button>
+		    <button type="button" id="login" class="btn btn-danger btn-lg">로그인</button>
 		</form>
 	</div>
 </div>

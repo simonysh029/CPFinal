@@ -11,6 +11,14 @@ import com.example.demo.vo.MemberVO;
 @Repository
 public class MemberDAO {
 
+	public String idFind(MemberVO m) {
+		return DBManager.idFind(m);
+	}
+	
+	public String pwFind(MemberVO m) {
+		return DBManager.pwFind(m);
+	}	
+	
 	public MemberVO findById(String username) {
 		return DBManager.findById(username);
 	}
@@ -43,6 +51,6 @@ public class MemberDAO {
 		
 	public int deleteM(String cid) {
 		return DBAdminManager.deleteM(cid);		
-	}	
+	}
 
 }

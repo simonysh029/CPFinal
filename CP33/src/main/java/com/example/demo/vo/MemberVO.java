@@ -12,4 +12,5 @@ public class MemberVO {
 	private String m_phone;
 	private String m_addr;
 	private int m_mile;
+	private String m_pws;
 }

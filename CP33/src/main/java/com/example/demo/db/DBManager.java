@@ -111,6 +111,7 @@ public class DBManager {
 		DetailAccommVO acc = null;
 		SqlSession session = factory.openSession();
 		acc = session.selectOne("accomm.detail1",a_id);
+		session.close();
 		return acc;
 	}
 
@@ -119,6 +120,7 @@ public class DBManager {
 		DetailAccommVO acc = null;
 		SqlSession session = factory.openSession();
 		acc = session.selectOne("accomm.detail2",a_id);
+		session.close();
 		return acc;
 	}
 	
@@ -159,6 +161,7 @@ public class DBManager {
 		List<EventVO> list = null;
 		SqlSession session = factory.openSession();
 		list = session.selectList("event.listEvent");
+		session.close();
 		return list;
 	}
 
@@ -166,6 +169,7 @@ public class DBManager {
 		EventVO e = null;
 		SqlSession session = factory.openSession();
 		e = session.selectOne("event.findByNo",e_no);
+		session.close();
 		return e;
 	}
 
@@ -174,6 +178,7 @@ public class DBManager {
 		List<EventVO> list = null;
 		SqlSession session = factory.openSession();
 		list = session.selectList("event.mainEvent");
+		session.close();
 		return list;
 	}
 
@@ -182,12 +187,14 @@ public class DBManager {
 		List<ReserveVO> list = null;
 		SqlSession session = factory.openSession();
 		list = session.selectList("mypage.findReserve", username);
+		session.close();
 		return list;
 	}
 	public static List<StayVO> findStay(String username) {
 		List<StayVO> list = null;
 		SqlSession session = factory.openSession();
 		list = session.selectList("mypage.findStay", username);
+		session.close();
 		return list;
 	}
 	public static int updateMember(MemberVO m) {
@@ -197,6 +204,22 @@ public class DBManager {
 		session.commit();
 		session.close();
 		return re;
+	}
+
+	public static String idFind(MemberVO m) {
+		String id = "";
+		SqlSession session = factory.openSession();
+		id = session.selectOne("member.idFind", m);
+		session.close();
+		return id;
+	}
+
+	public static String pwFind(MemberVO m) {
+		String pw = "";
+		SqlSession session = factory.openSession();
+		pw = session.selectOne("member.pwFind", m);
+		session.close();
+		return pw;
 	}
 
 }
