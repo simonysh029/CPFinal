@@ -23,7 +23,9 @@
 		<h2 class="text-center">객실 정보 수정(관리자)</h2><br>
 		<div class="d-flex justify-content-center">
 			<form action="/admin/updateGuestroom" method="post">
-		      	<input type="text" class="form-control" name="g_id" placeholder="객실 아이디">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+		      	<input type="hidden" name="a_id" th:value="${a_id}">
+		      	<input type="hidden" name="g_id" th:value="${gid.g_id}">
 		      	<input type="number" class="form-control" name="g_price" placeholder="객실 가격">
 		      	<input type="number" class="form-control" name="g_person" placeholder="숙박 가능 인원">
 		      	<input type="text" class="form-control" name="g_exp" placeholder="객실 설명">

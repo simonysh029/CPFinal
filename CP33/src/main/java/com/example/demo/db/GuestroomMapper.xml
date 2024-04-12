@@ -6,4 +6,20 @@
 		select * from guestroom where a_id=#{a_id}
 	</select>
 	
+	<select id="findByGid" resultType="guestroomVO">
+		select * from guestroom where g_id=#{g_id}
+	</select>
+	
+	<update id="updateGuestroomByAdmin" parameterType="guestroomVO">
+		UPDATE guestroom SET g_price=#{g_price}, g_person=#{g_person}, g_exp=#{g_exp}, g_img=#{g_img} WHERE g_id = #{g_id}
+	</update>
+			
+	<insert id="insertGuest" parameterType="guestroomVO">
+		insert into guestroom values(#{g_id}, #{g_price}, #{g_person}, #{g_exp}, #{g_img}, #{a_id})
+	</insert>
+	
+	<delete id="deleteG" parameterType="guestroomVO">
+		delete from guestroom where g_id=#{g_id}
+	</delete>
+	
 </mapper>

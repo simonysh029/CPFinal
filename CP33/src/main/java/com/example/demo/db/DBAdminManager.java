@@ -147,5 +147,39 @@ public class DBAdminManager {
 			session.close();
 			return re;
 		}
+		
+//관리자 객실
+		public static GuestroomVO findByGid(String g_id) {
+			GuestroomVO list = null;
+			SqlSession session = factory.openSession();
+			list = session.selectOne("guestroom.findByGid", g_id);
+			session.close();
+			return list;
+		}
+		public static int updateGuestroomByAdmin(GuestroomVO g) {
+			int re = -1;
+			SqlSession session = factory.openSession();
+			re = session.update("guestroom.updateGuestroomByAdmin", g);
+			session.commit();
+			session.close();
+			return re;
+		}
+		public static int insertGuest(GuestroomVO g) {
+			int re = -1;
+			SqlSession session = factory.openSession();
+			re = session.insert("guestroom.insertGuest", g);
+			System.out.println("re:"+re);
+			session.commit();
+			session.close();
+			return re;
+		}
 
+		public static int deleteG(String g_id) {
+			int re = -1;
+			SqlSession session = factory.openSession();
+			re = session.delete("guestroom.deleteG", g_id);
+			session.commit();
+			session.close();
+			return re;
+		}
 }

@@ -19,7 +19,6 @@ import com.example.demo.vo.EventVO;
 import com.example.demo.vo.GuestroomVO;
 import com.example.demo.vo.MemberVO;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
 
 @Controller
@@ -37,29 +36,12 @@ public class AdminController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	//회원, 숙소, 이벤트, 객실 리스트
 	
+//회원 정보 입력, 수정, 삭제
 	@GetMapping("/admin/listMember")
 	public void listMember(Model model) {
 		model.addAttribute("mList", mdao.findAll());	
 	}
-	@GetMapping("/admin/listAccomm")
-	public void listAccomm(Model model) {
-		model.addAttribute("aList", adao.findAllA());
-	}
-	@GetMapping("/admin/listEvent")
-	public void listEvent(Model model) {
-		model.addAttribute("eList", edao.findAllE());
-	}
-	@GetMapping("/admin/listGuestroom/{a_id}")
-	public String listGuestroom(@PathVariable("a_id") String a_id, Model model) {
-		List<GuestroomVO> gList = gdao.findByaId(a_id);
-		System.out.println(a_id);
-		model.addAttribute("gList", gList);
-		return "/admin/listGuestroom";
-	}
-	
-//회원 정보 입력, 수정, 삭제
 	@GetMapping("/admin/insertMember")
 	public void insertMemberForm() {
 	}
@@ -77,6 +59,7 @@ public class AdminController {
 	@PostMapping("/admin/updateMember")
 	public String updateMemberForm(MemberVO m) {	
 		m.setM_id(m.getM_id());
+		m.setM_pws(m.getM_pw());
 		m.setM_pw(passwordEncoder.encode(m.getM_pw()));
 		mdao.updateMemberByAdmin(m); 
 		return "redirect:/admin/listMember";
@@ -86,8 +69,11 @@ public class AdminController {
 		mdao.deleteM(cid);
 		return "redirect:/admin/listMember";
 	}
-	
 //숙소 정보 입력, 수정, 삭제
+	@GetMapping("/admin/listAccomm")
+	public void listAccomm(Model model) {
+		model.addAttribute("aList", adao.findAllA());
+	}
 	@GetMapping("/admin/insertAccomm")
 	public void insertAccommForm() {
 	}
@@ -96,7 +82,6 @@ public class AdminController {
 		adao.insertAccomm(a);
 		return "redirect:/admin/listAccomm";
 	}
-	
 	@GetMapping("/admin/updateAccomm/{aid}")
 	public String updateAccommForm(@PathVariable("aid") String a_id, Model model) {
 		model.addAttribute("aid", adao.findByAid(a_id));
@@ -113,6 +98,10 @@ public class AdminController {
 		return "redirect:/admin/listAccomm";
 	}
 //이벤트 정보 입력, 수정, 삭제
+	@GetMapping("/admin/listEvent")
+	public void listEvent(Model model) {
+		model.addAttribute("eList", edao.findAllE());
+	}
 	@GetMapping("/admin/insertEvent")
 	public void insertEventForm(Model model) {
 		model.addAttribute("e_no", edao.getNextNo());
@@ -137,34 +126,52 @@ public class AdminController {
 		edao.deleteE(e_no);
 		return "redirect:/admin/listEvent";
 	}
-	
-	
-
-	
-		
-//	//객실 정보 입력, 수정, 삭제
-//	
-	@GetMapping("/admin/insertGuestroom")
-	public void insertGuestroomForm() {
+//객실 정보 입력, 수정, 삭제
+	@GetMapping("/admin/listGuestroom/{a_id}")
+	public String listGuestroom(@PathVariable("a_id") String a_id, Model model) {
+		List<GuestroomVO> gList = gdao.findByaId(a_id);
+		AccommVO a = adao.findByAid(a_id);
+		model.addAttribute("name", a.getA_name());
+		model.addAttribute("id", a_id);
+		model.addAttribute("gList", gList);
+		return "/admin/listGuestroom";
 	}
-//	@PostMapping("/admin/insertGuestroom")
-//	public String insertGuestroom(GuestroomVO gvo) {
-//		
-//		return "/admin/guestroom";
-//	}
-	@GetMapping("/admin/updateGuestroom")
-	public void updateGuestroomForm() {
+	@GetMapping("/admin/insertGuestroom/{a_id}")
+	public String insertGuestroomForm(@PathVariable("a_id") String a_id, Model model) {
+		model.addAttribute("a_id", a_id);
+		return "/admin/insertGuestroom";
 	}
-//	@PostMapping("/admin/updateGuestroom")
-//	public String updateGuestroom(GuestroomVO gvo) {
-//		
-//		return "/admin/guestroom";
-//	}
-//	@GetMapping("/admin/deleteGuestroom")
-//	public void deleteGuestrooom(String g_id) {
-//		
-//	}
-//	
+	@PostMapping("/admin/insertGuestroom")
+	public String insertGuest(GuestroomVO g) {	
+		String aid = g.getA_id();
+		gdao.insertGuest(g);
+		System.out.println(g);
+		return "redirect:/admin/listGuestroom/"+aid;
+	}
+	
+	@GetMapping("/admin/updateGuestroom/{g_id}")
+	public String updateGuestroomForm(@PathVariable("g_id") String g_id, Model model) {
+		model.addAttribute("gid", gdao.findByGid(g_id));
+		GuestroomVO g = gdao.findByGid(g_id);
+		String a_id = g.getA_id();
+		model.addAttribute("a_id", a_id);
+		return "/admin/updateGuestroom";
+	}
+	@PostMapping("/admin/updateGuestroom")
+	public String updateGuestroom(GuestroomVO g) {		
+		gdao.updateGuestroomByAdmin(g);
+		String a_id = g.getA_id();
+		return "redirect:/admin/listGuestroom/"+a_id;
+	}
+	
+	@GetMapping("/admin/deleteGuestroom/{g_id}")
+	public String deleteGuestrooom(@PathVariable("g_id") String g_id) {
+		GuestroomVO g = gdao.findByGid(g_id);
+		String a_id = g.getA_id();
+		gdao.deleteG(g_id);
+		return "redirect:/admin/listGuestroom/"+a_id;
+	}
+	
 	
 }
    
