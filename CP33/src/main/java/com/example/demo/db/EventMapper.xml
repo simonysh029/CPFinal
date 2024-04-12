@@ -25,7 +25,6 @@
 
 	<update id="updateEventByAdmin" parameterType="eventVO">
 		UPDATE event SET e_all=#{e_all}, e_each=#{e_each}, e_main=#{e_main} WHERE e_no = #{e_no}
-
 	</update>
 
 	<delete id="deleteE" parameterType="Integer">

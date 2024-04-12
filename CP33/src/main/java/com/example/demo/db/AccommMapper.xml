@@ -158,4 +158,12 @@
 		SELECT * FROM accomm WHERE a_id = #{a_id}
 	</select>
 	
+	<update id="updateAccommByAdmin" parameterType="accommVO">
+		UPDATE accomm SET a_div=#{a_div}, a_name=#{a_name}, a_addr=#{a_addr}, a_grade=#{a_grade}, a_lat=#{a_lat}, a_lng=#{a_lng}, a_exp=#{a_exp}, a_img=#{a_img} WHERE a_id = #{a_id}
+	</update>
+	
+	<delete id="deleteA" parameterType="string">
+		delete from accomm where a_id=#{a_id}
+	</delete>
+	
 </mapper>

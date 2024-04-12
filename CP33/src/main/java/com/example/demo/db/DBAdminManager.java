@@ -123,12 +123,29 @@ public class DBAdminManager {
 			session.close();
 			return re;
 		}
-
-		public static List<AccommVO> findByAid(String a_id) {
-			List<AccommVO> list = null;
+		public static AccommVO findByAid(String a_id) {
+			AccommVO list = null;
 			SqlSession session = factory.openSession();
-			list = session.selectList("accomm.findByAid", a_id);
+			list = session.selectOne("accomm.findByAid", a_id);
+			session.close();
 			return list;
 		}
-	
+		public static int updateAccommByAdmin(AccommVO a) {
+			int re = -1;
+			SqlSession session = factory.openSession();
+			re = session.update("accomm.updateAccommByAdmin", a);
+			session.commit();
+			session.close();
+			return re;
+		}
+
+		public static int deleteA(String a_id) {
+			int re = -1;
+			SqlSession session = factory.openSession();
+			re = session.delete("accomm.deleteA", a_id);
+			session.commit();
+			session.close();
+			return re;
+		}
+
 }

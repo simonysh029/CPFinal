@@ -96,20 +96,22 @@ public class AdminController {
 		adao.insertAccomm(a);
 		return "redirect:/admin/listAccomm";
 	}
+	
 	@GetMapping("/admin/updateAccomm/{aid}")
 	public String updateAccommForm(@PathVariable("aid") String a_id, Model model) {
 		model.addAttribute("aid", adao.findByAid(a_id));
 		return "/admin/updateAccomm";
 	}
-//	@PostMapping("/admin/updateAccomm")
-//	public String updateMember(AccommVO avo) {
-//		
-//		return "/admin/listAccomm";
-//	}
-//	@GetMapping("/admin/deleteAccomm")
-//	public void deleteAccomm(String a_id) {
-//		
-//	}
+	@PostMapping("/admin/updateAccomm")
+	public String updateMember(AccommVO a) {
+		adao.updateAccommByAdmin(a);
+		return "redirect:/admin/listAccomm";
+	}
+	@GetMapping("/admin/deleteAccomm/{aid}")
+	public String deleteAccomm(@PathVariable("aid") String a_id) {
+		adao.deleteA(a_id);
+		return "redirect:/admin/listAccomm";
+	}
 //이벤트 정보 입력, 수정, 삭제
 	@GetMapping("/admin/insertEvent")
 	public void insertEventForm(Model model) {

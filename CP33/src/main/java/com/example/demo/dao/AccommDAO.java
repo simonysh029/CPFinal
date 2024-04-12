@@ -57,7 +57,15 @@ public class AccommDAO {
 		return DBAdminManager.insertAccomm(a);
 	}
 
-	public List<AccommVO> findByAid(String a_id) {
+	public AccommVO findByAid(String a_id) {
 		return DBAdminManager.findByAid(a_id);
+	}
+
+	public int updateAccommByAdmin(AccommVO a) {
+		return DBAdminManager.updateAccommByAdmin(a);
+	}
+
+	public int deleteA(String a_id) {
+		return DBAdminManager.deleteA(a_id);
 	}
 }
