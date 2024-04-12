@@ -61,6 +61,33 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      
+		.pagination {
+		   justify-content: center;
+		}
+		
+		.page-link {
+		  color: #000; 
+		  background-color: #fff;
+		  border: 1px solid #ccc; 
+		}
+		
+		.activee .page-link {
+		 z-index: 1;
+		 color: white;
+		 font-weight:bold;
+		 background-color: #dc3545;
+		 border-color: #dc3545;
+		}
+		
+		.page-link:focus, .page-link:hover {
+		  color: #dc3545;
+		  font-weight:bold;
+		  background-color: #fafafa; 
+		  border: 5px solid #dc3545;
+		}
+	
+
     </style>
     <!-- Custom styles for this template -->
     <link href="features.css" rel="stylesheet">
@@ -118,14 +145,30 @@
             </svg>
           </div>
           <h4 class="fw-semibold mb-0">요금</h4>
-          <p class="text-muted" th:text="${a.g_price}"></p>
+          <p class="text-muted" th:text="${#numbers.formatInteger(a.g_price, 3, 'COMMA')} + '원'"></p>
         </div>
         <a th:href="@{'/page/detailAccomm/'+${a.a_id}}" class="btn btn-danger btn-lg">상세보기</a>
       </div>
     </div>
   </div>
-  
-  
+  	
+	
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination pagination-lg">
+		    <li class="page-item">
+		        <a th:href="@{'/page/accomm?pageNum=1'}" class="page-link">&laquo;</a>
+		    </li>&nbsp;
+			<th:block th:each="i:${#numbers.sequence(1,totalPage)}">    
+			    <li class="page-item" th:class="${currentPage == i} ? 'activee'">
+			        <a th:href="@{'/page/accomm?pageNum=' + ${i}}" th:text="${i}" class="page-link"></a>
+			    </li>&nbsp;
+			</th:block>
+		    <li class="page-item">
+		        <a th:href="@{'/page/accomm?pageNum=' + ${totalPage}}" class="page-link">&raquo;</a>
+		    </li>
+		  </ul>
+		</nav>
+
 </div>
 </body>
 </html>

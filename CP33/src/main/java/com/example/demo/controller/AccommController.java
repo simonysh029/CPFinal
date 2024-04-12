@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.AccommDAO;
 
@@ -17,11 +19,34 @@ public class AccommController {
 	@Autowired
 	private AccommDAO adao;
 	
+	private int pageSIZE = 5;
+	private int totalRecord;
+	private int totalPage;
+	
 	// 숙소 조회 목록
 	@GetMapping("/page/accomm")
-	public String accomm(Model model, String a_div, int g_person, String keyword) {
-		model.addAttribute("list", adao.listAcc(a_div,g_person,keyword));
-		return "/page/accomm";
+	public ModelAndView accomm(
+			@RequestParam(value = "a_div", required = false) String a_div,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "g_person", required = false, defaultValue = "0") int g_person,
+            @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
+            ModelAndView modelAndView
+			) {
+		
+		modelAndView.addObject("a_div", a_div);
+		modelAndView.addObject("keyword", keyword);
+		modelAndView.addObject("g_person", g_person);
+		
+		totalRecord = adao.getTotalRecord(a_div, g_person, keyword);
+		totalPage = (int)Math.ceil(totalRecord/(double)pageSIZE);
+		int offset = (pageNum - 1) * pageSIZE;
+		int limit = pageSIZE;
+		
+		modelAndView.addObject("list", adao.listAcc(a_div,g_person,keyword,offset,limit));
+		modelAndView.addObject("totalPage", totalPage);
+		modelAndView.addObject("currentPage", pageNum);
+		modelAndView.setViewName("/page/accomm");
+		return modelAndView;
 	}
 
 	// 숙소 상세

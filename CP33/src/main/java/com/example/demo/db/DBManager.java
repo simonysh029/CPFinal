@@ -74,8 +74,23 @@ public class DBManager {
 		return list;
 	}
 	
+	// 전체 레코드 수
+	public static int getTotalRecord(String a_div, int g_person, String keyword) {
+		int re = 0;
+		SqlSession session = factory.openSession();
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("a_div", a_div);
+		map.put("g_person", g_person);
+		map.put("keyword", keyword);
+		
+		re = session.selectOne("accomm.totalRecord",map);
+		session.close();
+		return re;
+	}
+	
 	// 숙소 검색, 조회 목록
-	public static List<ListAccommVO> listAcc(String a_div, int g_person, String keyword) {
+	public static List<ListAccommVO> listAcc(String a_div, int g_person, String keyword, int offset, int limit) {
 		List<ListAccommVO> list = null;
 		SqlSession session = factory.openSession();
 		
@@ -83,6 +98,8 @@ public class DBManager {
 		map.put("a_div", a_div);
 		map.put("g_person", g_person);
 		map.put("keyword", keyword);
+		map.put("offset", offset);
+		map.put("limit", limit);
 		
 		list = session.selectList("accomm.list", map);
 		session.close();
@@ -220,6 +237,8 @@ public class DBManager {
 		session.close();
 		return re;
 	}
+
+
 
 //	public static String getNextNo(String m_id) {
 //		String nextNo = null;

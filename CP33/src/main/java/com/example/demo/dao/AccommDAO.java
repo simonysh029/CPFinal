@@ -12,8 +12,8 @@ import com.example.demo.vo.DetailAccommVO;
 @Repository
 public class AccommDAO {
 
-	public List<ListAccommVO> listAcc(String a_div, int g_person, String keyword){
-		return DBManager.listAcc(a_div, g_person, keyword);
+	public List<ListAccommVO> listAcc(String a_div, int g_person, String keyword, int offset, int limit){
+		return DBManager.listAcc(a_div, g_person, keyword, offset, limit);
 	}
 
 	public List<AccommVO> popH() {
@@ -46,6 +46,10 @@ public class AccommDAO {
 
 	public List<AccommVO> findAllA() {
 		return DBManager.findAllA();
+	}
+
+	public int getTotalRecord(String a_div, int g_person, String keyword) {
+		return DBManager.getTotalRecord(a_div, g_person, keyword);
 	}
 
 }

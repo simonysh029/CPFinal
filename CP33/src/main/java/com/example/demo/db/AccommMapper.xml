@@ -4,7 +4,7 @@
 
  	<!-- 숙소 검색, 조회 -->
 	<select id="list" resultType="listaccVO">
-	    SELECT a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
+		SELECT a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
 	    FROM (
 	        SELECT @rownum := @rownum + 1 AS n, a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
 	        FROM (
@@ -28,6 +28,37 @@
 	            ORDER BY a_grade DESC
 	        ) a, (SELECT @rownum := 0) r
 	    ) b
+	    LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="totalRecord" resultType="int">
+		SELECT COUNT(*) AS total_count
+		FROM (
+			SELECT a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
+		    FROM (
+		        SELECT @rownum := @rownum + 1 AS n, a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price
+		        FROM (
+		            SELECT a.a_id, a_name, a_addr, a_grade, a_exp, a_img, g_price 
+		            FROM accomm a, guestroom g
+		            WHERE a.a_id = g.a_id 
+		            AND g.g_id LIKE '%001'
+		            <!-- 동적 검색 조건 추가 -->
+		            <if test="a_div eq 'all'">
+		            	AND g.g_person >= #{g_person}
+		            	AND a.a_addr LIKE CONCAT('%', #{keyword}, '%')
+		            </if>
+		            <if test="a_div != null and a_div != 'all'">
+		                AND a.a_div = #{a_div}
+		            </if>
+		            <if test="keyword != null and a_div != 'all'">
+		                AND a.a_div = #{a_div}
+		                AND g.g_person >= #{g_person}
+		                AND a.a_addr LIKE CONCAT('%', #{keyword}, '%')
+		            </if>            
+		            ORDER BY a_grade DESC
+		        ) a, (SELECT @rownum := 0) r
+		    ) b
+		) AS count_query
 	</select>
 	
 	<!-- 메인화면 추천숙소 출력 -->

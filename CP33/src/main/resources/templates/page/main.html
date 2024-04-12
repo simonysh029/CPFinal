@@ -96,6 +96,7 @@
 		</select>
 		<input type="date" class="calendar" >
 	    <input type="date" class="calendar" >
+	    <input type="hidden" name="pageNum" value="1" >
 	 	<input type="search" class="form-control" name="keyword" placeholder="숙박 희망 지역을 입력해 주세요." aria-label="Recipient's username with two button addons">
 	 	<button class="btn btn-outline-secondary" type="search">검색</button>
 	</div>
@@ -106,7 +107,7 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
       
         <div class="col">
-          	<a href="/page/accomm?a_div=호텔&g_person=0">
+          	<a href="/page/accomm?a_div=호텔">
             	<img th:src="@{/images/hotel.png}" style="width: 100%; height: 90%;"/>
             </a>
           <div class="card shadow-sm">
@@ -117,7 +118,7 @@
         </div>
         
         <div class="col">
-            <a href="/page/accomm?a_div=펜션&g_person=0">
+            <a href="/page/accomm?a_div=펜션">
             	<img th:src="@{/images/pension.png}" style="width: 100%; height: 90%;"/>
             </a>
           <div class="card shadow-sm">
@@ -129,7 +130,7 @@
         </div>
         
         <div class="col">
-            <a href="/page/accomm?a_div=모텔&g_person=0">
+            <a href="/page/accomm?a_div=모텔">
             	<img th:src="@{/images/motel.png}" style="width: 100%; height: 90%;"/>
             </a>
           <div class="card shadow-sm">
@@ -141,7 +142,7 @@
         </div>
         
         <div class="col">
-            <a href="/page/accomm?a_div=가족형&g_person=0">
+            <a href="/page/accomm?a_div=가족형">
             	<img th:src="@{/images/fam.png}" style="width: 100%; height: 90%;"/>
             </a>
           <div class="card shadow-sm">
@@ -153,7 +154,7 @@
         </div>
         
         <div class="col">
-            <a href="/page/accomm?a_div=비지니스&g_person=0">
+            <a href="/page/accomm?a_div=비지니스">
             	<img th:src="@{/images/busi.png}" style="width: 100%; height: 90%;"/>
             </a>
           <div class="card shadow-sm">
