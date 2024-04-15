@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.FileOutputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.AccommDAO;
 import com.example.demo.dao.EventDAO;
@@ -19,6 +22,7 @@ import com.example.demo.vo.EventVO;
 import com.example.demo.vo.GuestroomVO;
 import com.example.demo.vo.MemberVO;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Setter;
 
 @Controller
@@ -69,6 +73,8 @@ public class AdminController {
 		mdao.deleteM(cid);
 		return "redirect:/admin/listMember";
 	}
+	
+	
 //숙소 정보 입력, 수정, 삭제
 	@GetMapping("/admin/listAccomm")
 	public void listAccomm(Model model) {
@@ -97,6 +103,8 @@ public class AdminController {
 		adao.deleteA(a_id);
 		return "redirect:/admin/listAccomm";
 	}
+	
+	
 //이벤트 정보 입력, 수정, 삭제
 	@GetMapping("/admin/listEvent")
 	public void listEvent(Model model) {
@@ -105,11 +113,41 @@ public class AdminController {
 	@GetMapping("/admin/insertEvent")
 	public void insertEventForm(Model model) {
 		model.addAttribute("e_no", edao.getNextNo());
-	}	
+	}
 	@PostMapping("/admin/insertEvent")
-	public String insertEvent(EventVO e) {	
-		edao.insertEvent(e);
-		return "redirect:/admin/listEvent";
+	public ModelAndView insertEvent(EventVO e, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
+		String e_all = null;
+		MultipartFile uploadFileAll = e.getUploadFileAll();
+		e_all = uploadFileAll.getOriginalFilename();
+		if(e_all != null && !e_all.equals("")) {
+			try {
+				byte []data = uploadFileAll.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+e_all);
+				fos.write(data);
+				fos.close();
+				e.setE_all(e_all);
+			} catch (Exception er) {
+				System.out.println("예외발생:"+er.getMessage());
+			}
+		}
+		String e_each = null;
+		MultipartFile uploadFileEach = e.getUploadFileEach();
+		e_each = uploadFileEach.getOriginalFilename();
+		if(e_each != null && !e_each.equals("")) {
+			try {
+				byte []data = uploadFileEach.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+e_each);
+				fos.write(data);
+				fos.close();
+				e.setE_each(e_each);
+			} catch (Exception er) {
+				System.out.println("예외발생:"+er.getMessage());
+			}
+		}
+		edao.insertEvent(e);	
+		ModelAndView mav = new ModelAndView("redirect:/admin/listEvent");
+		return mav;
 	}
 	@GetMapping("/admin/updateEvent/{eno}")
 	public String updateEventForm(@PathVariable("eno") int e_no, Model model) {
@@ -117,9 +155,39 @@ public class AdminController {
 		return "/admin/updateEvent";
 	}
 	@PostMapping("/admin/updateEvent")
-	public String updateEvent(EventVO e) {
+	public ModelAndView updateEvent(EventVO e, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
+		String e_all = null;
+		MultipartFile uploadFileAll = e.getUploadFileAll();
+		e_all = uploadFileAll.getOriginalFilename();
+		if(e_all != null && !e_all.equals("")) {
+			try {
+				byte []data = uploadFileAll.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+e_all);
+				fos.write(data);
+				fos.close();
+				e.setE_all(e_all);
+			} catch (Exception er) {
+				System.out.println("예외발생:"+er.getMessage());
+			}
+		}
+		String e_each = null;
+		MultipartFile uploadFileEach = e.getUploadFileEach();
+		e_each = uploadFileEach.getOriginalFilename();
+		if(e_each != null && !e_each.equals("")) {
+			try {
+				byte []data = uploadFileEach.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+e_each);
+				fos.write(data);
+				fos.close();
+				e.setE_each(e_each);
+			} catch (Exception er) {
+				System.out.println("예외발생:"+er.getMessage());
+			}
+		}
 		edao.updateEventByAdmin(e);
-		return "redirect:/admin/listEvent";
+		ModelAndView mav = new ModelAndView("redirect:/admin/listEvent");
+		return mav;
 	}
 	@GetMapping("/admin/deleteEvent/{eno}")
 	public String deleteEvent(@PathVariable("eno") int e_no) {

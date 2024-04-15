@@ -96,7 +96,6 @@ public class DBAdminManager {
 			session.close();
 			return getNextNo;
 		}
-
 		public static int updateEventByAdmin(EventVO e) {
 			int re = -1;
 			SqlSession session = factory.openSession();

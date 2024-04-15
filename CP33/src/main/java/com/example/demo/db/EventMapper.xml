@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="insertEvent" parameterType="eventVO">
-		insert into event values(#{e_no},#{e_all},#{e_each},#{e_main})
+		INSERT INTO event (e_no, e_all, e_each, e_main) VALUES (#{e_no}, #{e_all}, #{e_each}, #{e_main})
 	</insert>
 
 	<update id="updateEventByAdmin" parameterType="eventVO">
