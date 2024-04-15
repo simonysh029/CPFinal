@@ -25,13 +25,20 @@
 			<form action="/admin/updateEvent" method="post" enctype="multipart/form-data">
 		      	<input type="hidden" class="form-control" name="e_no" th:value="${eno.e_no}">
 		      	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		      	<input type="text" class="form-control" name="e_main" placeholder="메인페이지 등록 (Y,N)"><br>
 			    <input type="hidden" name="e_all" th:value="${eno.e_all}">
 			    <input type="hidden" name="e_each" th:value="${eno.e_each}">
 	    		<img th:src="|/images/${eno.e_all}|" width="50" height="50"><br>	    
 			    <input type="file" class="form-control" name="uploadFileAll">
 			    <img th:src="|/images/${eno.e_each}|" width="50" height="50"><br>
 			    <input type="file" class="form-control" name="uploadFileEach">
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="e_main" id="inlineRadio1" value="Y">
+				  <label class="form-check-label" for="inlineRadio1">메인페이지 등록(Y)</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="e_main" id="inlineRadio2" value="N">
+				  <label class="form-check-label" for="inlineRadio2">메인페이지 미등록(N)</label>
+				</div>
 			    <button type="submit">수정</button>
 			    <button><a href="/admin/listEvent">이전으로</a></button><br>
 			</form>

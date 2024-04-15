@@ -25,9 +25,16 @@
 			<form action="/admin/insertEvent" method="post" enctype="multipart/form-data">
 		      	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 		      	<input type="hidden" name="e_no" th:value="${e_no}">
-		      	<input type="text" class="form-control" name="e_main" placeholder="메인 페이지 등록 (Y,N)">
 		      	<input type="file" class="form-control" name="uploadFileAll"><br>
 		      	<input type="file" class="form-control" name="uploadFileEach"><br>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="e_main" id="inlineRadio1" value="Y">
+				  <label class="form-check-label" for="inlineRadio1">메인페이지 등록(Y)</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="e_main" id="inlineRadio2" value="N">
+				  <label class="form-check-label" for="inlineRadio2">메인페이지 미등록(N)</label>
+				</div>
 			    <button type="submit">추가</button>
 			    <button><a href="/admin/listEvent">이전으로</a></button><br>
 			</form>
