@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
@@ -73,8 +74,6 @@ public class AdminController {
 		mdao.deleteM(cid);
 		return "redirect:/admin/listMember";
 	}
-	
-	
 //숙소 정보 입력, 수정, 삭제
 	@GetMapping("/admin/listAccomm")
 	public void listAccomm(Model model) {
@@ -84,9 +83,25 @@ public class AdminController {
 	public void insertAccommForm() {
 	}
 	@PostMapping("/admin/insertAccomm")
-	public String insertAccomm(AccommVO a) {
+	public ModelAndView insertAccomm(AccommVO a, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
+		String a_img = null;
+		MultipartFile uploadFileAcc = a.getUploadFileAcc();
+		a_img = uploadFileAcc.getOriginalFilename();
+		if(a_img != null && !a_img.equals("")) {
+			try {
+				byte [] data = uploadFileAcc.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+a_img);
+				fos.write(data);
+				fos.close();
+				a.setA_img(a_img);
+			} catch (Exception e) {
+				System.out.println("예외발생:"+e.getMessage());
+			}
+		}
 		adao.insertAccomm(a);
-		return "redirect:/admin/listAccomm";
+		ModelAndView mav = new ModelAndView("redirect:/admin/listAccomm");
+		return mav;
 	}
 	@GetMapping("/admin/updateAccomm/{aid}")
 	public String updateAccommForm(@PathVariable("aid") String a_id, Model model) {
@@ -94,17 +109,37 @@ public class AdminController {
 		return "/admin/updateAccomm";
 	}
 	@PostMapping("/admin/updateAccomm")
-	public String updateMember(AccommVO a) {
+	public ModelAndView updateMember(AccommVO a, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
+		String a_img = null;
+		MultipartFile uploadFileAcc = a.getUploadFileAcc();
+		a_img = uploadFileAcc.getOriginalFilename();
+		if(a_img != null && !a_img.equals("")) {
+			try {
+				byte [] data = uploadFileAcc.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+a_img);
+				fos.write(data);
+				fos.close();
+				a.setA_img(a_img);
+			} catch (Exception e) {
+				System.out.println("예외발생:"+e.getMessage());
+			}
+		}
 		adao.updateAccommByAdmin(a);
-		return "redirect:/admin/listAccomm";
+		ModelAndView mav = new ModelAndView("redirect:/admin/listAccomm");
+		return mav;
 	}
 	@GetMapping("/admin/deleteAccomm/{aid}")
-	public String deleteAccomm(@PathVariable("aid") String a_id) {
-		adao.deleteA(a_id);
+	public String deleteAccomm(@PathVariable("aid") String a_id, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
+		String a_img = adao.findByAid(a_id).getA_img();
+		int re = adao.deleteA(a_id);
+		if(re==1) {
+			File file = new File(path+"/"+a_img);
+			file.delete();
+		}
 		return "redirect:/admin/listAccomm";
 	}
-	
-	
 //이벤트 정보 입력, 수정, 삭제
 	@GetMapping("/admin/listEvent")
 	public void listEvent(Model model) {
@@ -131,7 +166,6 @@ public class AdminController {
 				System.out.println("예외발생:"+er.getMessage());
 			}
 		}
-		
 		String e_each = null;
 		MultipartFile uploadFileEach = e.getUploadFileEach();
 		e_each = uploadFileEach.getOriginalFilename();
@@ -146,7 +180,7 @@ public class AdminController {
 				System.out.println("예외발생:"+er.getMessage());
 			}
 		}
-		edao.insertEvent(e);	
+		edao.insertEvent(e);
 		ModelAndView mav = new ModelAndView("redirect:/admin/listEvent");
 		return mav;
 	}
@@ -190,9 +224,19 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("redirect:/admin/listEvent");
 		return mav;
 	}
-	@GetMapping("/admin/deleteEvent/{eno}")
-	public String deleteEvent(@PathVariable("eno") int e_no) {
-		edao.deleteE(e_no);
+	@GetMapping("/admin/deleteEvent/{e_no}")
+	public String deleteEvent(@PathVariable("e_no") int e_no, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
+		String e_all = edao.findByNo(e_no).getE_all();
+		String e_each = edao.findByNo(e_no).getE_each();
+		int re = edao.deleteE(e_no);
+		int ree = edao.deleteE(e_no);
+		if(re==1 && ree==1) {
+			File fileAll = new File(path+"/"+e_all);
+			File fileEach = new File(path+"/"+e_each);
+			fileAll.delete();
+			fileEach.delete();
+		}
 		return "redirect:/admin/listEvent";
 	}
 //객실 정보 입력, 수정, 삭제
@@ -210,14 +254,30 @@ public class AdminController {
 		model.addAttribute("a_id", a_id);
 		return "/admin/insertGuestroom";
 	}
-	@PostMapping("/admin/insertGuestroom")
-	public String insertGuest(GuestroomVO g) {	
-		String aid = g.getA_id();
-		gdao.insertGuest(g);
-		System.out.println(g);
-		return "redirect:/admin/listGuestroom/"+aid;
-	}
 	
+	
+	@PostMapping("/admin/insertGuestroom")
+	public ModelAndView insertGuest(GuestroomVO g, HttpServletRequest request) {
+		String aid = g.getA_id();		
+		String path = request.getServletContext().getRealPath("images");
+		String g_img = null;
+		MultipartFile uploadFileGuest = g.getUploadFileGuest();
+		g_img = uploadFileGuest.getOriginalFilename();
+		if (g_img != null && !g_img.equals("")) {
+			try {
+				byte []data = uploadFileGuest.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+g_img);
+				fos.write(data);
+				fos.close();
+				g.setG_img(g_img);
+			} catch (Exception e) {
+				System.out.println("예외발생:"+e.getMessage());
+			}
+		}		
+		gdao.insertGuest(g);
+		ModelAndView mav = new ModelAndView("redirect:/admin/listGuestroom/"+aid);
+		return mav;
+	}
 	@GetMapping("/admin/updateGuestroom/{g_id}")
 	public String updateGuestroomForm(@PathVariable("g_id") String g_id, Model model) {
 		model.addAttribute("gid", gdao.findByGid(g_id));
@@ -227,20 +287,39 @@ public class AdminController {
 		return "/admin/updateGuestroom";
 	}
 	@PostMapping("/admin/updateGuestroom")
-	public String updateGuestroom(GuestroomVO g) {		
-		gdao.updateGuestroomByAdmin(g);
+	public String updateGuestroom(GuestroomVO g, HttpServletRequest request) {		
+		String path = request.getServletContext().getRealPath("images");
+		String g_img = null;
+		MultipartFile uploadFileGuest = g.getUploadFileGuest();
+		g_img = uploadFileGuest.getOriginalFilename();
+		if (g_img != null && !g_img.equals("")) {
+			try {
+				byte []data = uploadFileGuest.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+g_img);
+				fos.write(data);
+				fos.close();
+				g.setG_img(g_img);
+			} catch (Exception e) {
+				System.out.println("예외발생:"+e.getMessage());
+			}
+		}
 		String a_id = g.getA_id();
+		gdao.updateGuestroomByAdmin(g);
 		return "redirect:/admin/listGuestroom/"+a_id;
 	}
 	
 	@GetMapping("/admin/deleteGuestroom/{g_id}")
-	public String deleteGuestrooom(@PathVariable("g_id") String g_id) {
+	public String deleteGuestrooom(@PathVariable("g_id") String g_id, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("images");
 		GuestroomVO g = gdao.findByGid(g_id);
 		String a_id = g.getA_id();
-		gdao.deleteG(g_id);
+		String g_img = gdao.findByGid(g_id).getG_img();
+		int re = gdao.deleteG(g_id);
+		if(re==1) {
+			File file = new File(path+"/"+g_img);
+			file.delete();
+		}
 		return "redirect:/admin/listGuestroom/"+a_id;
-	}
-	
-	
+	}	
 }
    
