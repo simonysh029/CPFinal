@@ -13,3 +13,4 @@ public class EventVO {
 	private String e_each;
 	private MultipartFile uploadFileEach;
 }
+ 

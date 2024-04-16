@@ -25,7 +25,7 @@ public class EventDAO {
 	public EventVO findByNo(int e_no) {
 		return DBManager.findByNo(e_no);
 	}	
-	
+	 
 	public int updateEventByAdmin(EventVO e) {
 		return DBAdminManager.updateEventByAdmin(e);
 	}

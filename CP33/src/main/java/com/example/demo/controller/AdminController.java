@@ -37,7 +37,7 @@ public class AdminController {
 	private EventDAO edao;
 	@Autowired
 	private GuestroomDAO gdao;
-	
+	 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	

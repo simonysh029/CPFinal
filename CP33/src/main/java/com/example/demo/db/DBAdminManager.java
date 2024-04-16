@@ -24,7 +24,7 @@ public class DBAdminManager {
 			System.out.println("예외발생:"+e.getMessage());
 		}
 	}
-	
+	 
 	//admin페이지에서 사용
 		public static List<MemberVO> findAll() {
 			List<MemberVO> list = null;

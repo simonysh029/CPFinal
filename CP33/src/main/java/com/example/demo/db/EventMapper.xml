@@ -30,5 +30,5 @@
 	<delete id="deleteE" parameterType="Integer">
 		DELETE FROM event WHERE e_no = #{e_no}
 	</delete>
-
+ 
 </mapper>
