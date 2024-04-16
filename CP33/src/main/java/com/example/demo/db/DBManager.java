@@ -126,6 +126,30 @@ public class DBManager {
 	
 //	----- member -----
 	
+	public static String idCheck(String m_id) {
+		String id = "";
+		SqlSession session = factory.openSession();
+		id = session.selectOne("member.idCheck", m_id);
+		session.close();
+		return id;
+	}
+	
+	public static String idFind(MemberVO m) {
+		String id = "";
+		SqlSession session = factory.openSession();
+		id = session.selectOne("member.idFind", m);
+		session.close();
+		return id;
+	}
+
+	public static String pwFind(MemberVO m) {
+		String pw = "";
+		SqlSession session = factory.openSession();
+		pw = session.selectOne("member.pwFind", m);
+		session.close();
+		return pw;
+	}
+	
 	// 회원가입
 	public static int insertMember(MemberVO m) {
 		int re = -1;
@@ -206,20 +230,6 @@ public class DBManager {
 		return re;
 	}
 
-	public static String idFind(MemberVO m) {
-		String id = "";
-		SqlSession session = factory.openSession();
-		id = session.selectOne("member.idFind", m);
-		session.close();
-		return id;
-	}
 
-	public static String pwFind(MemberVO m) {
-		String pw = "";
-		SqlSession session = factory.openSession();
-		pw = session.selectOne("member.pwFind", m);
-		session.close();
-		return pw;
-	}
 
 }

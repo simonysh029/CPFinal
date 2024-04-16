@@ -152,19 +152,21 @@
     </div>
   </div>
   	
-	
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination pagination-lg">
 		    <li class="page-item">
-		        <a th:href="@{'/page/accomm?pageNum=1'}" class="page-link">&laquo;</a>
+		        <a th:href="@{'/page/accomm?pageNum=1&amp;a_div=' + ${a_div} + '&amp;keyword=' 
+		        + ${keyword} + '&amp;g_person=' + ${g_person}}" class="page-link">&laquo;</a>
 		    </li>&nbsp;
 			<th:block th:each="i:${#numbers.sequence(1,totalPage)}">    
 			    <li class="page-item" th:class="${currentPage == i} ? 'activee'">
-			        <a th:href="@{'/page/accomm?pageNum=' + ${i}}" th:text="${i}" class="page-link"></a>
+			        <a th:href="@{'/page/accomm?pageNum=' + ${i} + '&amp;a_div=' + ${a_div} 
+			        + '&amp;keyword=' + ${keyword} + '&amp;g_person=' + ${g_person}}" th:text="${i}" class="page-link"></a>
 			    </li>&nbsp;
 			</th:block>
 		    <li class="page-item">
-		        <a th:href="@{'/page/accomm?pageNum=' + ${totalPage}}" class="page-link">&raquo;</a>
+		        <a th:href="@{'/page/accomm?pageNum=' + ${totalPage} + '&amp;a_div=' + ${a_div} 
+		        + '&amp;keyword=' + ${keyword} + '&amp;g_person=' + ${g_person}}" class="page-link">&raquo;</a>
 		    </li>
 		  </ul>
 		</nav>

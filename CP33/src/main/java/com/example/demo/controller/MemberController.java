@@ -47,6 +47,17 @@ public class MemberController {
 	public void pwFindForm() {
 	}
 	
+	@PostMapping("/page/idCheck")
+	@ResponseBody
+	public String idCheck(String m_id) {
+		String id = dao.idCheck(m_id);
+		if(id == null) {
+			return "'" + m_id + "'는(은) 사용 가능한 ID입니다.";
+		}else {
+			return "'" + m_id + "'는(은) 사용할 수 없는 ID입니다.";
+		}
+	}
+	
 	@PostMapping("/page/idFind")
 	@ResponseBody
 	public String idFind(MemberVO m) {

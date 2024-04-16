@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}"/>
+<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 <title>Insert title here</title>
 
 <!-- bootstrap css 적용 -->
@@ -24,18 +26,60 @@
 			location.href="/page/login"
 		});
 	});
+	
+	function idCheck(){
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+	    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		
+	    var formData = {
+			'm_id': $('#m_id').val(),
+		};
+	    
+	    $.ajax({
+	        type: 'POST',
+	        url: '/page/idCheck',
+	        beforeSend : function(xhr)
+            {
+				xhr.setRequestHeader(csrfHeader, csrfToken);
+            },
+	        data: formData,
+	        success: function(response) {
+	            $(".modal-body").html(response);
+	            $(".modal").modal("show");
+	        }
+	    });
+	}
 </script>
 </th:block>
 
 </head>
 <body>
 <div layout:fragment="content">
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ID 중복확인</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<div class="container">
 		<h2 class="text-center">회원가입</h2><br />
 		<div class="d-flex justify-content-center">
 			<form action="/page/join" method="post">
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			    <input type="text" name="m_id" class="form-control" placeholder="아이디 입력"><br>
+			    <input type="text" id="m_id" name="m_id" class="form-control" placeholder="아이디 입력"><br>
+			    <a href="javascript:void(0);" onclick="idCheck();" class="btn btn-danger">중복확인</a><br><br />
 			    <input type="password" name="m_pw" class="form-control" placeholder="비밀번호 입력"><br>
 			    <input type="text" name="m_name" class="form-control" placeholder="이름 입력"><br>
 			    <input type="text" name="m_regist" class="form-control" placeholder="주민등록번호 입력"><br>
@@ -48,5 +92,6 @@
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
