@@ -131,6 +131,7 @@ public class AdminController {
 				System.out.println("예외발생:"+er.getMessage());
 			}
 		}
+		
 		String e_each = null;
 		MultipartFile uploadFileEach = e.getUploadFileEach();
 		e_each = uploadFileEach.getOriginalFilename();
