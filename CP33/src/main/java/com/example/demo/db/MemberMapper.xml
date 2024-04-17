@@ -31,7 +31,7 @@
 	</insert>
 	
 	<insert id="insertAdmin" parameterType="memberVO">
-		insert into member values(#{m_id},#{m_pw},#{m_name},"user",#{m_regist},#{m_phone},#{m_addr},#{m_mile})
+		insert into member values(#{m_id},#{m_pw},#{m_name}, "user",#{m_regist},#{m_phone},#{m_addr},#{m_mile},#{m_pws})
 	</insert>
 	
 	

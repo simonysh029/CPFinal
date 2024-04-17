@@ -52,6 +52,7 @@ public class AdminController {
 	}
 	@PostMapping("/admin/insertMember")
 	public String insertMember(MemberVO m) {
+		m.setM_pws(m.getM_pw());
 		m.setM_pw(passwordEncoder.encode(m.getM_pw()));
 		mdao.insertAdmin(m);
 		return "redirect:/admin/listMember";

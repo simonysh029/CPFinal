@@ -21,21 +21,37 @@
 	   		location.href="/admin/updateGuestroom/"+gid;
 	    }
 	    function deleteG(){
-	   		location.href="/admin/deleteGuestroom/"+gid;
+			showConfirm()
 	    }
-	var gid;
-    function checkOnlyOne(element) {
-  	  const checkboxes = document.getElementsByName("g_id");
-      checkboxes.forEach((cb) => {
-        cb.checked = false;
-      })
-      element.checked = true;
-      $('input:checkbox[name=g_id]').each(function (index) {
-		    if ($(this).is(":checked")) {
-		    	gid = $(this).val()
-		    }
-		});
-    }
+	   var gid;
+	   function checkOnlyOne(element) {
+	  	  const checkboxes = document.getElementsByName("g_id");
+	      checkboxes.forEach((cb) => {
+	        cb.checked = false;
+	      })
+	      element.checked = true;
+	      $('input:checkbox[name=g_id]').each(function (index) {
+			    if ($(this).is(":checked")) {
+			    	gid = $(this).val()
+			    }
+			});
+	    }		
+	    
+	    function showConfirm() {
+	        document.getElementById('confirmModal').style.display = 'block';
+	    }
+
+	    function hideConfirm() {
+	        document.getElementById('confirmModal').style.display = 'none';
+	    }
+
+	    function confirmAction(confirmed) {
+	        if (confirmed) {
+	        	location.href="/admin/deleteGuestroom/"+gid;
+	        }else{
+	        	hideConfirm();
+	        }
+	    }
    </script>
 </th:block>
 
@@ -89,12 +105,26 @@
       }
     </style>
 </th:block>
-
-
 </head>
 <body>
 <div layout:fragment="content">
-
+<div id="confirmModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm</h5>
+        <button onclick="confirmAction(false)" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>정말 삭제하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="confirmAction(true)" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
+        <button onclick="confirmAction(false)" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
 	<div class="d-flex flex-nowrap">
 
 		<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
@@ -146,7 +176,6 @@
 				      <th scope="col">객실 가격</th>
 				      <th scope="col">투숙 예정 인원</th>
 				      <th scope="col">객실 설명</th>
-				      <th scope="col">숙소 평점</th>
 				    </tr>
 				  </thead>
 				  <tbody class="table-group-divider">

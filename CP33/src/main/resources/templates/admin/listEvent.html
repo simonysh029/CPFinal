@@ -32,8 +32,24 @@
 		   		location.href="/admin/updateEvent/"+eno; 
 		    }
 		    function deleteE(){
-		   		location.href="/admin/deleteEvent/"+eno; 
+				showConfirm()
 		    }
+		    
+		    function showConfirm() {
+		        document.getElementById('confirmModal').style.display = 'block';
+		    }
+	
+		    function hideConfirm() {
+		        document.getElementById('confirmModal').style.display = 'none';
+		    }
+	
+		    function confirmAction(confirmed) {
+		        if (confirmed) {
+		        	location.href="/admin/deleteEvent/"+eno;
+		        }else{
+		        	hideConfirm();
+		        }
+		    }		    
 	   </script>
 </th:block>
 
@@ -92,6 +108,24 @@
 </head>
 <body>
 <div layout:fragment="content">
+
+<div id="confirmModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm</h5>
+        <button onclick="confirmAction(false)" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>정말 삭제하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="confirmAction(true)" class="btn btn-danger" data-bs-dismiss="modal">삭제</button>
+        <button onclick="confirmAction(false)" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 	<div class="d-flex flex-nowrap">
 
