@@ -14,7 +14,6 @@ import com.example.demo.dao.AccommDAO;
 import com.example.demo.dao.EventDAO;
 import com.example.demo.dao.MemberDAO;
 import com.example.demo.vo.AccommVO;
-import com.example.demo.vo.MemberVO;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.Setter;

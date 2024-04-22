@@ -26,7 +26,7 @@ public class AccommController {
 	// 숙소 조회 목록
 	@GetMapping("/page/accomm")
 	public ModelAndView accomm(
-			@RequestParam(value = "a_div", required = false) String a_div,
+			@RequestParam(value = "a_div", required = false, defaultValue = "all") String a_div,
             @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
             @RequestParam(value = "g_person", required = false, defaultValue = "0") int g_person,
             @RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum,
