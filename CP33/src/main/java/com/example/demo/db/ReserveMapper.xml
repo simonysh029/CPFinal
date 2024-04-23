@@ -3,7 +3,11 @@
 <mapper namespace="reserve">
 
 	<insert id="insertReserve" parameterType="reserveVO">
-		insert into payment values(#{r_no},#{r_date},#{r_start},#{r_end},#{r_person},#{m_id},#{g_id})
+		insert into reserve values(#{r_no},#{r_date},#{r_start},#{r_end},#{r_person},#{m_id},#{g_id})
 	</insert>
+
+	<select id="getNextRno" resultType="Integer">
+		SELECT IFNULL(MAX(r_no), 0) + 1 FROM reserve
+	</select>
 
 </mapper> 

@@ -12,5 +12,9 @@ public class ReserveDAO {
 		return DBManager.insertReserve(r);
 	}
 
+	public int getNextRno() {
+		return DBManager.getNextRno();
+	}
+
 }
  

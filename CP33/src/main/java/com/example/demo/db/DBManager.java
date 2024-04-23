@@ -242,7 +242,7 @@ public class DBManager {
 	public static int getNextPno() {
 		int re;
 		SqlSession session = factory.openSession();
-		re = session.selectOne("event.getNextNo");
+		re = session.selectOne("payment.getNextPno");
 		session.close();
 		return re;
 	}
@@ -259,6 +259,14 @@ public class DBManager {
 		SqlSession session = factory.openSession();
 		re = session.insert("reserve.insertReserve",r);
 		session.commit();
+		session.close();
+		return re;
+	}
+
+	public static int getNextRno() {
+		int re;
+		SqlSession session = factory.openSession();
+		re = session.selectOne("reserve.getNextRno");
 		session.close();
 		return re;
 	}

@@ -30,6 +30,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.Setter;
 
 @Controller
+@Setter
 public class PaymentController {
 	@Autowired
 	private PaymentDAO pdao;
@@ -45,21 +46,19 @@ public class PaymentController {
 		model.addAttribute("g_price", g_price);
 		model.addAttribute("omList", mdao.findById(m_id));
 		model.addAttribute("oList", ovo);
-		model.addAttribute("nextPno", pdao.getNextPno());
 	}
-	@PostMapping("/page/payment")
+	@PostMapping("/page/pay")
 	@ResponseBody
-	public int payment(PaymentVO pvo) {
-		int p_no = pdao.getNextPno();
-		pvo.setP_no(p_no);
-		System.out.println(pvo);
+	public int pay(PaymentVO pvo) {
+		pvo.setP_no(pdao.getNextPno());
 		int re = pdao.insertPayment(pvo);
 		return re;
 	}
-	@GetMapping("/page/reserve")
+	@PostMapping("/page/reserve")
+	@ResponseBody
 	public int reserve(ReserveVO rvo) {
+		rvo.setR_no(rdao.getNextRno());
 		int re = rdao.insertReserve(rvo);
-		System.out.println(re);
 		return re;
 	}
 	@GetMapping("/page/payOK")

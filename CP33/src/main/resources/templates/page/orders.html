@@ -19,8 +19,8 @@
 <script>
 	$(function(){ 
 		$("#btnPay").click(function(){
-//			var csrfToken = $("meta[name='_csrf']").attr("content");
-//		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+			var csrfToken = $("meta[name='_csrf']").attr("content");
+		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 			var name = $("#name").data();
 			var data_name = name.mname;			
 			var tel = $("#phone").data();
@@ -45,15 +45,13 @@
 	        var year = today.getYear()+1900;
 	        var month = today.getMonth()+1;
 	        var day = today.getDate();
-	        var date = year+"/"+month+"/"+day;
+	        var date = year+"-"+month+"-"+day;
 			var start = $("#r_start").data();
 			var data_start = start.rstart;
 			var end = $("#r_end").data();
 			var data_end = end.rend;
-	//data 안에 	m_id:data_id
+			
 			var data2 = {
-				r_no:1,
-				//r_no는 controller에서 getNextRno로 자동생성(VO로 직접 추가)
 				r_start:data_start,
 				r_end:data_end,
 				r_date:date,
@@ -63,36 +61,51 @@
 			IMP.init("imp22638418");//자신의 상점코드를 설정하세요! 
 			IMP.request_pay(data,
 			function(res){
-			if(res.success){
-				console.log(res);
-				var id = $("#id").data();
-				var data_id = id.mid;
-				var data1 = {
-					'p_no':1,
-					'p_date':date,
-					'p_person':data_person,
-					'g_id':data_guestroom,
-					'p_id' : res.imp_uid,
-					'p_card' : res.card_number,
-					'p_amount' : res.paid_amount,
-					'm_id' : data_id
-				}
-				console.log(data1);
-				$.ajax({
-					type: 'POST',
-		        	url: '/page/payment',
-		        	beforeSend : function(xhr)
-				    {
-						xhr.setRequestHeader(csrfHeader, csrfToken);
-				    },
-					data:data1,
-					success:function(re){
-						console.log(re);
+				if(res.success){
+					var id = $("#id").data();
+					var data_id = id.mid;
+					var data1 = {
+						p_date:date,
+						p_person:data_person,
+						g_id:data_guestroom,
+						p_id : res.imp_uid,
+						p_card : res.card_number,
+						p_amount : res.paid_amount,
+						m_id : data_id
 					}
-				})
-			}else{
-				console.log(res.error_msg);
-			}
+					data2.m_id = data_id;
+					
+					$.ajax({
+						type: 'POST',
+			        	url: '/page/pay',
+			        	beforeSend : function(xhr)
+					    {
+							xhr.setRequestHeader(csrfHeader, csrfToken);
+					    },
+						data:data1,
+						success:function(re){
+							if(re==1){
+								$.ajax({
+									type: 'POST',
+									url: '/page/reserve',
+						        	beforeSend : function(xhr)
+								    {
+										xhr.setRequestHeader(csrfHeader, csrfToken);
+								    },
+									data:data2,
+									success:function(re){
+										if(re==1){
+											$(".modal-body").html("예약되었습니다.");
+								            $(".modal").modal("show");
+										}
+									}
+								});
+							}
+						}
+					})
+				}else{
+					console.log(res.error_msg);
+				}
 			
 			});	
 
@@ -103,12 +116,28 @@
 </head>
 <body>
 <div layout:fragment="content">
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">숙소 예약</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<div class="container">
 		<h2 class="text-center">결제</h2>
 		<div class="d-flex justify-content-center">
 			<div class="col-md-6">
-				<input type="hidden" th:text="${nextPno}" th:data-no="${nextPno}" id="no">
-				
 				<span th:text="|고객아이디 : ${omList.m_id}|" th:data-mid="${omList.m_id}" id="id"></span><br>
 				<span th:text="|고객명 : ${omList.m_name}|" th:data-mname="${omList.m_name}" id="name"></span><br>
 				<span th:text="|전화번호 : ${omList.m_phone}|" th:data-mphone="${omList.m_phone}" id="phone"></span><br>

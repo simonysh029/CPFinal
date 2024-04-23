@@ -3,11 +3,11 @@
 <mapper namespace="payment">
 
 	<insert id="insertPayment" parameterType="paymentVO">
-		insert into payment values(#{p_no},#{p_card},#{p_date},#{p_amount},#{p_id},#{p_person},#{g_id},#{m_id})
+		insert into payment values(#{p_no},#{p_id},#{p_amount},#{p_date},#{p_card},#{m_id},#{g_id})
 	</insert>
 
 	<select id="getNextPno" resultType="Integer">
-		SELECT IFNULL(MAX(p_no), 0) + 1 FROM p_no 
+		SELECT IFNULL(MAX(p_no), 0) + 1 FROM payment
 	</select>
 
 </mapper> 

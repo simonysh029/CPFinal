@@ -35,6 +35,7 @@
     <mapper resource="com/example/demo/db/AccommMapper.xml"/>
     <mapper resource="com/example/demo/db/MyPageMapper.xml"/>
     <mapper resource="com/example/demo/db/GuestroomMapper.xml"/>
+    <mapper resource="com/example/demo/db/ReserveMapper.xml"/>    
     <mapper resource="com/example/demo/db/PaymentMapper.xml"/>    
   </mappers>
 </configuration> 
