@@ -19,26 +19,18 @@
 <script>
 	$(function(){
 		$("#btnPay").click(function(){
-//			showConfirm()
-
-			var csrfToken = $("meta[name='_csrf']").attr("content");
-		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-		    
+//			var csrfToken = $("meta[name='_csrf']").attr("content");
+//		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 			var name = $("#name").data();
-			var data_name = name.mname;
-			
+			var data_name = name.mname;			
 			var tel = $("#phone").data();
 			var data_tel = tel.mphone;
-			
 			var addr = $("#addr").data();
 			var data_addr = addr.maddr;
-										
 			var price = $("#price").data();
 			var data_price = price.gprice;
-			
 			var guestroom = $("#guestroom").data();
 			var data_guestroom = guestroom.gid;
-			
 			var person = $("#person").data();
 			var data_person = person.rperson;
 						
@@ -47,7 +39,6 @@
 				pay_method: 'card',
 				merchant_uid: 'merchant_' + new Date().getTime(),
 				amount:data_price
-				//amount의 값을 가져오려면 customer_uid가 만들어져야 되는데 필수 정보로 받진않나?
 			}
 
 			var today = new Date();
@@ -55,15 +46,11 @@
 	        var month = today.getMonth()+1;
 	        var day = today.getDate();
 	        var date = year+"/"+month+"/"+day;
-			
 			var start = $("#r_start").data();
 			var data_start = start.rstart;
-			
 			var end = $("#r_end").data();
 			var data_end = end.rend;
-			
 	//data 안에 	m_id:data_id
-	
 			var data2 = {
 				r_no:1,
 				//r_no는 controller에서 getNextRno로 자동생성(VO로 직접 추가)
@@ -81,8 +68,8 @@
 				var id = $("#id").data();
 				var data_id = id.mid;
 				var data1 = {
-					'p_no':1,		//결제번호는 Controller에서 VO에 직접 추가
-					'p_date':date, 	//결제일
+					'p_no':1,
+					'p_date':date,
 					'p_person':data_person,
 					'g_id':data_guestroom,
 					'p_id' : res.imp_uid,
@@ -94,7 +81,7 @@
 				$.ajax({
 					type: 'POST',
 		        	url: '/page/payment',
-					beforeSend : function(xhr)
+		        	beforeSend : function(xhr)
 				    {
 						xhr.setRequestHeader(csrfHeader, csrfToken);
 				    },
@@ -103,7 +90,6 @@
 						console.log(re);
 					}
 				})
-
 			}else{
 				console.log(res.error_msg);
 			}
