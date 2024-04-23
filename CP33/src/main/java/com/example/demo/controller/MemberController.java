@@ -15,20 +15,16 @@ import lombok.Setter;
 @Controller
 @Setter
 public class MemberController {
-
 	@Autowired
 	private MemberDAO dao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 	@GetMapping("/page/login")
 	public void loginForm() {
 	}
-	
 	@GetMapping("/page/join")
 	public void joinForm() {	
 	}
-	
 	@PostMapping("/page/join")
 	public String joinSubmit(MemberVO m) {
 		m.setM_pws(m.getM_pw());

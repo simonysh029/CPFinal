@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment">
+
+	<insert id="insertPayment" parameterType="paymentVO">
+		insert into payment values(#{p_no},#{p_card},#{p_date},#{p_amount},#{p_id},#{p_person},#{g_id},#{m_id})
+	</insert>
+
+	<select id="getNextPno" resultType="Integer">
+		SELECT IFNULL(MAX(p_no), 0) + 1 FROM p_no 
+	</select>
+
+</mapper>

@@ -24,6 +24,5 @@ public class GuestroomDAO {
 	}
 	public int deleteG(String g_id) {
 		return DBAdminManager.deleteG(g_id);
-		
 	}
 }

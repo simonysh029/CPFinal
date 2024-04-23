@@ -16,6 +16,7 @@ import com.example.demo.vo.DetailAccommVO;
 import com.example.demo.vo.EventVO;
 import com.example.demo.vo.GuestroomVO;
 import com.example.demo.vo.MemberVO;
+import com.example.demo.vo.PaymentVO;
 import com.example.demo.vo.ReserveVO;
 import com.example.demo.vo.StayVO;
 
@@ -230,6 +231,35 @@ public class DBManager {
 		return re;
 	}
 
-
-
+	// ----- Payement -----
+	public static int findPrice(String g_id) {
+		SqlSession session = factory.openSession();
+		int g_price;
+		g_price = session.selectOne("guestroom.findPrice", g_id);
+		session.close();
+		return g_price;
+	}
+	public static int getNextPno() {
+		int re;
+		SqlSession session = factory.openSession();
+		re = session.selectOne("event.getNextNo");
+		session.close();
+		return re;
+	}
+	public static int insertPayment(PaymentVO p) {
+		int re = -1;
+		SqlSession session = factory.openSession();
+		re = session.insert("payment.insertPayment",p);
+		session.commit();
+		session.close();
+		return re;
+	}
+	public static int insertReserve(ReserveVO r) {
+		int re=-1;
+		SqlSession session = factory.openSession();
+		re = session.insert("reserve.insertReserve",r);
+		session.commit();
+		session.close();
+		return re;
+	}
 }
