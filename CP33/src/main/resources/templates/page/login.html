@@ -22,14 +22,19 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 	$(function(){
+		
+		// 회원가입 화면으로 이동하는 이벤트
 		$("#join").click(function(){
 			location.href="/page/join"
 		});
 	});
 	
+	// 아이디 찾기 화면으로 이동하는 이벤트
     function idFunction() {
     	location.href="/page/idFind"
     }
+	
+	// 비밀번호 찾기 화면으로 이동하는 이벤트
     function pwFunction() {
     	location.href="/page/pwFind"
     }
@@ -38,20 +43,24 @@
 
 </head>
 <body>		
-<div layout:fragment="content">
-	<div class="container">
-		<h2 class="text-center">로그인</h2><br>
-		<div class="d-flex justify-content-center">
-			<form action="/page/login" method="post">
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		      	<input type="text" class="form-control" name="username" placeholder="아이디 입력"><br>
-			    <input type="password" class="form-control" name="password" placeholder="비밀번호 입력"><br>
-			    <button type="submit" class="btn btn-danger btn-lg">로그인</button>
-			    <button type="button" id="join" class="btn btn-danger btn-lg">회원가입</button>
-		    </form>
-		</div>	
-	</div>
-	<br />
+
+	<!-- 로그인 form -->
+	<div layout:fragment="content">
+		<div class="container">
+			<h2 class="text-center">로그인</h2><br>
+			<div class="d-flex justify-content-center">
+				<form action="/page/login" method="post">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			      	<input type="text" class="form-control" name="username" placeholder="아이디 입력"><br>
+				    <input type="password" class="form-control" name="password" placeholder="비밀번호 입력"><br>
+				    <button type="submit" class="btn btn-danger btn-lg">로그인</button>
+				    <button type="button" id="join" class="btn btn-danger btn-lg">회원가입</button>
+			    </form>
+			</div>	
+		</div>
+		<br />
+		
+	<!-- 아이디/비밀번호 찾기 -->
 	<div class="container d-flex justify-content-center">
 		<a href="javascript:void(0)" onclick="idFunction()">아이디 찾기</a>&nbsp;
 		<a href="javascript:void(0)" onclick="pwFunction()">비밀번호 찾기</a>

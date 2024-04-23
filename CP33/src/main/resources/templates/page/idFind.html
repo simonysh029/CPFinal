@@ -19,29 +19,36 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 	$(function(){
+		
+		// 로그인 화면으로 이동하는 이벤트
 		$("#login").click(function(){
 			location.href="/page/login"
 		});
+		
+		// 비밀번호 찾기 화면으로 이동하는 이벤트
 		$("#pwFind").click(function(){
 			location.href="/page/pwFind"
 		});
 		
+		// 아이디 찾기 요청하는 함수
 		$('#form').submit(function(event) {
 		    event.preventDefault();	
 			
+		    // ajax 데이터 전송을 위한 formData 생성
 		    var formData = {
 				'm_name': $('#m_name').val(),
 				'm_regist': $('#m_regist').val(),
 				'm_phone': $('#m_phone').val()
 		    };
 		    
+		    // 스프링 시큐리티 토큰정보 변수로 생성
 		    var csrfToken = $("meta[name='_csrf']").attr("content");
 		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		    
 		    $.ajax({
 		        type: 'POST',
 		        url: '/page/idFind',
-		        beforeSend : function(xhr)
+		        beforeSend : function(xhr) 	// 토큰정보 전송
 	            {
 					xhr.setRequestHeader(csrfHeader, csrfToken);
 	            },
@@ -67,6 +74,7 @@
 <body>
 <div layout:fragment="content">
 
+<!-- 모달 -->
 <div class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -84,19 +92,21 @@
   </div>
 </div>
 
-<div class="container">
-	<h2 class="text-center">아이디 찾기</h2><br />
-	<div class="d-flex justify-content-center">
-		<form id="form" >
-		   	<input type="text" class="form-control" id="m_name" name="m_name" placeholder="이름 입력"><br>
-		    <input type="text" class="form-control" id="m_regist" name="m_regist" placeholder="주민등록번호 입력"><br>
-		    <input type="text" class="form-control" id="m_phone" name="m_phone" placeholder="전화번호 입력"><br>
-		    <button type="submit" class="btn btn-danger btn-lg">찾기</button>
-		    <button type="reset" class="btn btn-danger btn-lg">재입력</button>
-		    <button type="button" id="login" class="btn btn-danger btn-lg">로그인</button>	    
-		</form>
+	<!-- 아이디 찾기 form -->
+	<div class="container">
+		<h2 class="text-center">아이디 찾기</h2><br />
+		<div class="d-flex justify-content-center">
+			<form id="form" >
+			   	<input type="text" class="form-control" id="m_name" name="m_name" placeholder="이름 입력"><br>
+			    <input type="text" class="form-control" id="m_regist" name="m_regist" placeholder="주민등록번호 입력"><br>
+			    <input type="text" class="form-control" id="m_phone" name="m_phone" placeholder="전화번호 입력"><br>
+			    <button type="submit" class="btn btn-danger btn-lg">찾기</button>
+			    <button type="reset" class="btn btn-danger btn-lg">재입력</button>
+			    <button type="button" id="login" class="btn btn-danger btn-lg">로그인</button>	    
+			</form>
+		</div>
 	</div>
-</div>
+
 </div>
 </body>
 </html>

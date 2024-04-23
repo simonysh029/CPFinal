@@ -29,7 +29,7 @@
      </a>
       <ul class="nav nav-pills">
            
-        <li class="nav-item"><a href="/page/login" class="nav-link">로그인/회원가입</a></li>    
+        <li class="nav-item" th:if="${session.id} == null"><a href="/page/login" class="nav-link">로그인/회원가입</a></li>    
         <li class="nav-item" th:if="${session.id} != null"><a href="/page/logout" class="nav-link">로그아웃</a></li>
         <li class="nav-item" th:if="${session.role} == user"><a href="/page/myPage" class="nav-link">마이페이지</a></li>
         <li class="nav-item" th:if="${session.role} == admin"><a href="/admin/listMember" class="nav-link">관리자페이지</a></li>

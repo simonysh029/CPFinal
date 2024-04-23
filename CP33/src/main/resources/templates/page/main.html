@@ -74,7 +74,8 @@
 <body>
 
 <div layout:fragment="content">
-<!-- form태그를 통한 search -->
+
+<!-- 검색 form -->
 <div class="container">
 <form action="/page/accomm" method="get">
 	<div class="input-group">
@@ -102,6 +103,8 @@
 	</div>
 </form>
 </div>
+  
+  <!-- 숙소 구분별 컨테이너 -->
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
@@ -168,6 +171,7 @@
       </div>
      </div>
      
+  <!-- 인기숙소 1 컨테이너 -->
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
@@ -220,6 +224,8 @@
        </div>
       </div>
      </div>
+     
+  <!-- 인기숙소 2 컨테이너-->
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-5">
@@ -268,6 +274,7 @@
       </div>
      </div>
      
+  <!-- 진행중인 이벤트 -->   
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -282,9 +289,10 @@
        </div>
       </div>
      </div><br>
-	<!-- 숙소구분별 -->
+     
+<!-- 숙소구분별 네비게이션 -->
 <div class="container">
-<h2 style="font-size: 25px;">형태별 추천 숙소</h2>
+<h2 style="font-size: 25px;">숙소 구분</h2>
 <nav class="nav justify-content-left">
   <a class="nav-link" href="/page/accomm?a_div=호텔">호텔</a>
   <a class="nav-link" href="/page/accomm?a_div=펜션">펜션</a>
@@ -293,9 +301,10 @@
   <a class="nav-link" href="/page/accomm?a_div=비지니스">비지니스 호텔</a>
 </nav>
 </div>
-	<!-- 세부지역별 -->
+
+<!-- 지역별 네비게이션 -->
 <div class="container">
-<h2 style="font-size: 25px;">지역별 추천숙소</h2>
+<h2 style="font-size: 25px;">지역</h2>
 <nav class="nav justify-content-left">
   <a class="nav-link" href="/page/accomm?keyword=서울">서울</a>
   <a class="nav-link" href="/page/accomm?keyword=부산">부산</a>

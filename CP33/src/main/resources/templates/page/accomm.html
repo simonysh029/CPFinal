@@ -95,10 +95,10 @@
 
 </head>
 <body>
-<!-- 업체1 -->
 
 <div layout:fragment="content">
 
+  <!-- 숙소 목록만큼 반복하여 숙소컨테이너 생성  -->
   <div class="container px-4 py-5" th:each="a:${list}">
     <h2 class="pb-2 border-bottom" th:text="${a.a_name}"></h2>
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
@@ -152,6 +152,7 @@
     </div>
   </div>
   	
+		<!-- 페이징 처리 -->  	
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination pagination-lg">
 		    <li class="page-item">

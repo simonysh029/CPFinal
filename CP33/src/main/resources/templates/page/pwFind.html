@@ -17,26 +17,31 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 	$(function(){
+		
+		// 로그인 화면으로 이동하는 이벤트
 		$("#login").click(function(){
 			location.href="/page/login"
 		});
 		
+		// 비밀번호 찾기 요청하는 함수
 		$('#form').submit(function(event) {
 		    event.preventDefault();	
 			
+		 	// ajax 데이터 전송을 위한 formData 생성
 		    var formData = {
 				'm_name': $('#m_name').val(),
 				'm_id': $('#m_id').val(),
 				'm_phone': $('#m_phone').val()
 		    };
 		    
+			// 스프링 시큐리티 토큰정보 변수로 생성
 		    var csrfToken = $("meta[name='_csrf']").attr("content");
 		    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 		    
 		    $.ajax({
 		        type: 'POST',
 		        url: '/page/pwFind',
-		        beforeSend : function(xhr)
+		        beforeSend : function(xhr) // 토큰정보 전송
 	            {
 					xhr.setRequestHeader(csrfHeader, csrfToken);
 	            },
@@ -61,6 +66,7 @@
 <body>		
 <div layout:fragment="content">
 
+<!-- 모달 -->
 <div class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -78,6 +84,7 @@
   </div>
 </div>
 
+<!-- 비밀번호 찾기 form -->
 <div class="container">
 	<h2 class="text-center">비밀번호 찾기</h2><br />
 	<div class="d-flex justify-content-center">
@@ -91,6 +98,7 @@
 		</form>
 	</div>
 </div>
+
 </div>
 </body>
 </html>

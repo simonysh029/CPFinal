@@ -33,34 +33,38 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String main(Model model) {
-		List<AccommVO> popH = adao.popH();
-		List<AccommVO> popP = adao.popP();
-		List<AccommVO> popM = adao.popM();
-		List<AccommVO> popF = adao.popF();
-		List<AccommVO> popB = adao.popB();
-		model.addAttribute("popH1", popH.get(0));
-		model.addAttribute("popH2", popH.get(1));
-		model.addAttribute("popP1", popP.get(0));
-		model.addAttribute("popP2", popP.get(1));
-		model.addAttribute("popM1", popM.get(0));
-		model.addAttribute("popM2", popM.get(1));
-		model.addAttribute("popF1", popF.get(0));
-		model.addAttribute("popF2", popF.get(1));
-		model.addAttribute("popB1", popB.get(0));
-		model.addAttribute("popB2", popB.get(1));
-		model.addAttribute("list", edao.mainEvent());
+		List<AccommVO> popH = adao.popH();	// 호텔 인기숙소 목록 조회
+		List<AccommVO> popP = adao.popP();	// 펜션 인기숙소 목록 조회
+		List<AccommVO> popM = adao.popM();	// 모텔 인기숙소 목록 조회
+		List<AccommVO> popF = adao.popF();	// 가족형숙소 인기숙소 목록 조회
+		List<AccommVO> popB = adao.popB();	// 비지니스호텔 인기숙소 목록 조회
+		model.addAttribute("popH1", popH.get(0));	// 호텔 평점 1위 숙소 상태유지
+		model.addAttribute("popH2", popH.get(1));	// 호텔 평점 2위 숙소 상태유지
+		model.addAttribute("popP1", popP.get(0));	// 펜션 평점 1위 숙소 상태유지
+		model.addAttribute("popP2", popP.get(1));	// 펜션 평점 2위 숙소 상태유지
+		model.addAttribute("popM1", popM.get(0));	// 모텔 평점 1위 숙소 상태유지
+		model.addAttribute("popM2", popM.get(1));	// 모텔 평점 2위 숙소 상태유지
+		model.addAttribute("popF1", popF.get(0));	// 가족형숙소 평점 1위 숙소 상태유지
+		model.addAttribute("popF2", popF.get(1));	// 가족형숙소 평점 2위 숙소 상태유지
+		model.addAttribute("popB1", popB.get(0));	// 비지니스호텔 평점 1위 숙소 상태유지
+		model.addAttribute("popB2", popB.get(1));	// 비지니스호텔 평점 2위 숙소 상태유지
+		model.addAttribute("list", edao.mainEvent());	// 진행중인 이벤트 목록 조회하여 상태유지
 		return "/page/main";
 	}
 	
 	@GetMapping("/login")
 	public String login(HttpSession session) {
+		
+		// 로그인 성공시 유저정보 가져오기
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User)authentication.getPrincipal();
+		
+		// 로그인한 회원의 id 세션에 상태유지
 		String id = user.getUsername();
 		session.setAttribute("id", id);
 		
+		// 로그인한 회원의 role 세션에 상태유지
 		String role = mdao.findRole(id);
-		System.out.println(role);
 		session.setAttribute("role", role);
 		
 		return "redirect:/";
