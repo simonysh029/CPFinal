@@ -13,4 +13,4 @@ public class ReserveVO {
 	private int r_person;
 	private String m_id;
 	private String g_id;
-}
+} 

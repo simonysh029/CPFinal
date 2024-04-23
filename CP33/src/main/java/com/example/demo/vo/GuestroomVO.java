@@ -13,4 +13,4 @@ public class GuestroomVO {
 	private String g_img;
 	private MultipartFile uploadFileGuest;
 	private String a_id;
-}
+} 

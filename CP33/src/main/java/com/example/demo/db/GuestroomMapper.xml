@@ -25,5 +25,5 @@
 	<select id="findPrice" resultType="Integer">
 		select g_price from guestroom where g_id=#{g_id}
 	</select>
-	
+	 
 </mapper>

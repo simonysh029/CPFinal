@@ -37,4 +37,4 @@
     <mapper resource="com/example/demo/db/GuestroomMapper.xml"/>
     <mapper resource="com/example/demo/db/PaymentMapper.xml"/>    
   </mappers>
-</configuration>
+</configuration> 

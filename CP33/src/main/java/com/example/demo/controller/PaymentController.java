@@ -49,38 +49,13 @@ public class PaymentController {
 	}
 	@PostMapping("/page/payment")
 	@ResponseBody
-	public String payment(@RequestBody PaymentVO pvo) {
-//		int p_no = pdao.getNextPno();
-//		pvo.setP_no(p_no);
-//		System.out.println(pvo);
-//		int re = pdao.insertPayment(pvo);
-//		return re;
-		
-		String view = null;
-		try {
-			pdao.insertPayment(pvo);
-			view = "/page/payOk";
-			return view; 
-		} catch (Exception e) {
-			e.printStackTrace();
-			view="/page/payError";
-			return view;
-		}
+	public int payment(PaymentVO pvo) {
+		int p_no = pdao.getNextPno();
+		pvo.setP_no(p_no);
+		System.out.println(pvo);
+		int re = pdao.insertPayment(pvo);
+		return re;
 	}
-	
-    @PostMapping("/page/payment")
-    @ResponseBody
-    public String handlePayment(@RequestBody PaymentVO paymentVO) {
-        try {
-            // 결제 정보를 데이터베이스에 저장합니다.
-            paymentDAO.insertPayment(paymentVO);
-            return "Payment processed successfully"; // 성공적으로 처리되었음을 클라이언트에 반환합니다.
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Failed to process payment"; // 처리 중 오류가 발생했음을 클라이언트에 반환합니다.
-        }
-    }
-	
 	@GetMapping("/page/reserve")
 	public int reserve(ReserveVO rvo) {
 		int re = rdao.insertReserve(rvo);

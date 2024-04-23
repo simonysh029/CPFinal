@@ -12,4 +12,4 @@ public class MyReserveVO {
 	private Date r_start;
 	private Date r_end;
 	private String m_id;
-}
+} 

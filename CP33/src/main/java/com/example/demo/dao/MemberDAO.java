@@ -57,5 +57,5 @@ public class MemberDAO {
 		return DBAdminManager.deleteM(cid);		
 	}
 
-
+ 
 }

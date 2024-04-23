@@ -6,4 +6,4 @@
 		insert into payment values(#{r_no},#{r_date},#{r_start},#{r_end},#{r_person},#{m_id},#{g_id})
 	</insert>
 
-</mapper>
+</mapper> 

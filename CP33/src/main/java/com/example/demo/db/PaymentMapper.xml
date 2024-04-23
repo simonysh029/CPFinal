@@ -10,4 +10,4 @@
 		SELECT IFNULL(MAX(p_no), 0) + 1 FROM p_no 
 	</select>
 
-</mapper>
+</mapper> 

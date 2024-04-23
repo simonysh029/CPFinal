@@ -18,4 +18,4 @@ public class MyPageDAO {
 		return DBManager.findStay(username);
 	}
 
-}
+} 

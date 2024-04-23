@@ -12,4 +12,4 @@ public class StayVO {
 	private int s_person;
 	private String m_id;
 	private String g_id;
-}
+} 

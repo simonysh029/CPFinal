@@ -16,4 +16,4 @@ public class AccommVO {
 	private String a_exp;
 	private String a_img;
 	private MultipartFile uploadFileAcc;
-}
+} 

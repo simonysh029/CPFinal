@@ -25,7 +25,7 @@
 	<select id="findRole" resultType="string">
 		select m_role from member where m_id=#{id}
 	</select>
-
+ 
 	<insert id="insert" parameterType="memberVO">
 		insert into member values(#{m_id},#{m_pw},#{m_name},#{m_role},#{m_regist},#{m_phone},#{m_addr},#{m_mile},#{m_pws})
 	</insert>

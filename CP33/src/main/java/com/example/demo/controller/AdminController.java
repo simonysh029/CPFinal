@@ -25,11 +25,11 @@ import com.example.demo.vo.MemberVO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Setter;
-
+  
 @Controller
 @Setter
 public class AdminController {
-
+ 
 	@Autowired
 	private MemberDAO mdao;
 	@Autowired

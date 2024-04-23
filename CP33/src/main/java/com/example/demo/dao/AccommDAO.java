@@ -69,3 +69,4 @@ public class AccommDAO {
 		return DBAdminManager.deleteA(a_id);
 	}
 }
+ 

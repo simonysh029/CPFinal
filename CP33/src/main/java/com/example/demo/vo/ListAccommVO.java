@@ -12,3 +12,4 @@ public class ListAccommVO {
 	private String a_img;
 	private int g_price;
 }
+ 

@@ -19,3 +19,4 @@ public class DetailAccommVO {
 	private String g_exp;
 	private String g_img;
 }
+ 
