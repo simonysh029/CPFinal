@@ -19,7 +19,7 @@ public class AccommController {
 		@Autowired
 		private AccommDAO adao;
 		
-		private int pageSIZE = 1;
+		private int pageSIZE = 3;
 		private int totalRecord;
 		private int totalPage;
 		
