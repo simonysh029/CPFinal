@@ -11,7 +11,7 @@
 	</select>
 		
 	<update id="updateGuestroomByAdmin" parameterType="guestroomVO">
-		UPDATE guestroom SET g_price=#{g_price}, g_person=#{g_person}, g_exp=#{g_exp}, g_img=#{g_img} WHERE g_id = #{g_id}
+		UPDATE guestroom SET g_price=#{g_price}, g_person=#{g_person}, g_exp=#{g_exp}, g_img=#{g_img}, a_id=#{a_id} WHERE g_id = #{g_id}
 	</update>
 			
 	<insert id="insertGuest" parameterType="guestroomVO">

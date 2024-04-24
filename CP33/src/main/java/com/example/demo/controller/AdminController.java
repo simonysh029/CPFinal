@@ -284,6 +284,9 @@ public class AdminController {
 		model.addAttribute("gid", gdao.findByGid(g_id));
 		GuestroomVO g = gdao.findByGid(g_id);
 		String a_id = g.getA_id();
+		AccommVO acc = adao.findByAid(a_id);
+		String a_name = acc.getA_name();
+		model.addAttribute("a_name", a_name);
 		model.addAttribute("a_id", a_id);
 		return "/admin/updateGuestroom";
 	}
@@ -305,6 +308,7 @@ public class AdminController {
 			}
 		}
 		String a_id = g.getA_id();
+		System.out.println(g);
 		gdao.updateGuestroomByAdmin(g);
 		return "redirect:/admin/listGuestroom/"+a_id;
 	}

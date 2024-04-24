@@ -10,15 +10,13 @@
 <title>Insert title here</title>
 
 <th:block layout:fragment="script">
-<!-- bootstrap js 적용 -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <meta name="theme-color" content="#712cf9">
 <script>
 	$(function(){
-		
 		// 마이페이지 화면으로 이동하는 이벤트
-		$("#myPage").click(function(){
+		$("#back").click(function(){
 			location.href="/page/myPage"
 		});
 	});
@@ -35,17 +33,21 @@
 
 <div layout:fragment="content">
 	<div class="container">
-		<h2 class="text-center">회원 정보 수정</h2><br>
+		<h2 class="text-center" style="font-size: 30px; font-weight: bold;">회원 정보 수정</h2><br>
 		<div class="d-flex justify-content-center">
 			<form action="/page/updateMember" method="post">
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		      	<input type="password" class="form-control" name="username" placeholder="아이디 입력">
-		      	<input type="text" class="form-control" name="password" placeholder="비밀번호 입력">
-		      	<input type="text" class="form-control" name="m_name" placeholder="이름 입력">
-			    <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력">
-		  		<input type="text" class="form-control" name="m_addr" placeholder="주소 입력"><br />
-			    <button type="submit" class="btn btn-danger btn-lg">수정</button>
-			    <button type="button" class="btn btn-danger btn-lg" id="myPage">이전</button>
+		      	<input type="text" class="form-control" name="username" placeholder="아이디 입력" th:value="${list.m_id}" readonly="readonly">
+		      	<input type="password" class="form-control" name="password" placeholder="비밀번호 입력">
+		      	<input type="text" class="form-control" name="m_name" placeholder="이름 입력" th:value="${list.m_name}">
+			    <input type="text" class="form-control" name="m_phone" placeholder="전화번호 입력" th:value="${list.m_phone}">
+		  		<input type="text" class="form-control" name="m_addr" placeholder="주소 입력" th:value="${list.m_addr}"><br />
+			    <br>
+				<div class="d-flex justify-content-center">
+				    <button type="submit" class="btn btn-danger btn-lg">수정</button>
+				    &nbsp;&nbsp;&nbsp;
+				    <button type="button" class="btn btn-danger btn-lg" id="back">이전</button><br>
+			    </div>
 			</form>
 		</div>
 	</div>
